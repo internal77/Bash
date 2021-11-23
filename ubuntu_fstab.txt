@@ -1,0 +1,5 @@
+LABEL=cloudimg-rootfs   /        ext4   defaults,discard        0 0
+# /dev/nvme1n1p1
+UUID=018d0678-6b26-4ad7-8f0f-b8c3e9ecdd67  /data   ext4   rw,relatime  0 0
+# swap
+/swap none swap defaults 0 0

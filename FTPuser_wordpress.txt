@@ -1,0 +1,17 @@
+Login              : wordpress
+Password           : $6$qEP3C27IMqLxNJH0$6ydcJ1GAwu7CuM89H9LbUB5Y96gB7R.PRbfXushSa/9s8ken9X6jYzZDMieboR8d4MJh2zsPLvyv20WRh9rkD/
+UID                : 1001 (wordpress)
+GID                : 1001 (ftpusers)
+Directory          : /var/www/wordpress.example.com/wp-content/uploads/./
+Full name          :
+Download bandwidth : 0 Kb (unlimited)
+Upload   bandwidth : 0 Kb (unlimited)
+Max files          : 0 (unlimited)
+Max size           : 0 Mb (unlimited)
+Ratio              : 0:0 (unlimited:unlimited)
+Allowed local  IPs :
+Denied  local  IPs :
+Allowed client IPs :
+Denied  client IPs :
+Time restrictions  : 0000-0000 (unlimited)
+Max sim sessions   : 0 (unlimited)

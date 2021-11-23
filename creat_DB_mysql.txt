@@ -1,0 +1,43 @@
+# mysql -u root -p
+Enter password:
+
+## Create database ##
+CREATE DATABASE wordpress;
+
+## Creating new user ##
+CREATE USER wordpress@localhost IDENTIFIED BY "secure_password";
+
+## Grant privileges to database ##
+GRANT ALL ON wordpress.* TO 'wordpress_user'@'localhost';
+
+## FLUSH privileges ##
+FLUSH PRIVILEGES;
+
+## Exit ##
+exit
+
+CREATE DATABASE имя_базы_данных;
+
+CREATE USER 'имя_пользователя'@'хост_или_IP_машины' IDENTIFIED BY 'пароль_пользователя';
+CREATE USER 'имя_пользователя'@'%' IDENTIFIED BY 'password';
+CREATE USER 'имя_пользователя'@'localhost' IDENTIFIED BY 'password';
+
+# забрать права
+REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'bloguser'@'localhost';
+REVOKE ALL PRIVILEGES ON *.* FROM 'wordpress_user'@'localhost';
+
+# удалить пользователя
+DROP USER 'wordpress_user'@'localhost';
+
+# посмотреть права пользователя
+SHOW GRANTS FOR 'user'@'localhost';
+
+# дать права
+GRANT INSERT, SELECT ON *.* TO 'wordpress_user'@'localhost';
+
+# минимальные права
+GRANT SELECT, SHOW VIEW, RELOAD, REPLICATION CLIENT, EVENT, TRIGGER ON *.* TO 'botbackup'@'localhost';
+GRANT LOCK TABLES ON *.* TO 'botbackup'@'localhost';
+
+# удалить базу имя_базы_данных
+DROP DATABASE wordpress_db;
