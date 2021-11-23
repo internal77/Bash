@@ -173,7 +173,8 @@ chmod -R 755 /var/lib/php/session
 # -----------------FTP НАСТРОЙКА----------------------------
 yum install pure-ftpd-selinux
 systemctl start pure-ftpd
-# /usr/sbin/pure-ftpd -p 30000:50000 -HBA - passive
+# iptables --append INPUT -m state --state NEW -m tcp -p tcp --dport 48000:50000 -j ACCEPT
+#
 syatemctl enable pure-ftpd
 cd /etc/pure-ftpd
 nano /etc/pure-ftpd/pure-ftpd.conf > PassivePortRange 45000 50000 > PureDB /etc/pure-ftpd/pureftpd.pdb

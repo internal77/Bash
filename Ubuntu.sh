@@ -31,3 +31,46 @@ git --version
 # sudo nano /etc/fstab
 # symlink ln -s /data/mysql /var/lib/mysql    ln -s /data/www /var/www
 # created swap file - sudo fallocate -l 1G /swap - sudo mkswap /swap - sudo swapon /swap - sudo nano /etc/fstab > /swap none swap defaults 0 0
+# -----------------Установка NGINX----------------------
+sudo apt install curl gnupg2 ca-certificates lsb-release ubuntu-archive-keyring
+curl https://nginx.org/keys/nginx_signing.key | gpg --dearmor \
+    | sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
+gpg --dry-run --quiet --import --import-options import-show /usr/share/keyrings/nginx-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+http://nginx.org/packages/ubuntu `lsb_release -cs` nginx" \
+    | sudo tee /etc/apt/sources.list.d/nginx.list
+    echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+    http://nginx.org/packages/mainline/ubuntu `lsb_release -cs` nginx" \
+        | sudo tee /etc/apt/sources.list.d/nginx.list
+sudo apt update
+sudo apt install nginx
+# systemctl start nginx
+# systemctl enable nginx
+# systemctl status nginx
+# /etc/nginx/conf.d/
+
+#-----------------Установка MYSQL-------------------------#
+# cd /tmp
+# wget https://dev.mysql.com/get/mysql-apt-config_0.8.20-1_all.deb
+# sudo dpkg -i mysql-apt-config_0.8.20-1_all.deb
+sudo apt update
+sudo apt-get install mysql-server
+sudo mysql_secure_installation
+# systemctl start mysql
+# systemctl enable mysql
+# systemctl status mysql
+
+#---------------Установка--APACHE-----------------------------------#
+sudo apt update
+sudo apt install apache2
+# systemctl start apache2
+# systemctl enable apache2
+# systemctl status apache2
+
+#---------------Установка--PHP8-----------------------------------#
+sudo apt update
+sudo apt install software-properties-common
+sudo add-apt-repository ppa:ondrej/php
+sudo apt update
+sudo apt install php8.0 libapache2-mod-php8.0
+sudo apt install php8.0-cli php8.0-common php8.0-fpm php8.0-redis php8.0-snmp php8.0-xml
