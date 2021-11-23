@@ -169,7 +169,7 @@ mkdir -p /var/lib/php/session
 chown -R nginx:nginx /var/lib/php/session
 chown -R nginx:nginx /var/lib/php/session
 chmod -R 755 /var/lib/php/session
----
+# -------------------------------
 # -----------------FTP НАСТРОЙКА----------------------------
 yum install pure-ftpd-selinux
 systemctl start pure-ftpd
