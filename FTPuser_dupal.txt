@@ -1,0 +1,17 @@
+Login              : drupal
+Password           : $6$Lsyvosgz/h.z3av0$QZ/ehajGt99Cz09TLXcRD3u7f0/VbmL0aRdsAbLhpo/EsxEIH5X6mEj4sl.bOOgQozObnNNOhWXpz3/GKH55z.
+UID                : 1002 (drupal)
+GID                : 1003 (ftpusers1)
+Directory          : /var/www/drupal.example.com/sites/default/files/./
+Full name          :
+Download bandwidth : 0 Kb (unlimited)
+Upload   bandwidth : 0 Kb (unlimited)
+Max files          : 0 (unlimited)
+Max size           : 0 Mb (unlimited)
+Ratio              : 0:0 (unlimited:unlimited)
+Allowed local  IPs :
+Denied  local  IPs :
+Allowed client IPs :
+Denied  client IPs :
+Time restrictions  : 0000-0000 (unlimited)
+Max sim sessions   : 0 (unlimited)

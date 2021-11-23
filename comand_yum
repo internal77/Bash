@@ -1,0 +1,23 @@
+## search it ##
+sudo yum search htop
+
+## get more info, if found ##
+sudo yum info htop
+
+## install it ##
+sudo yum install htop
+
+## uninstall ###
+sudo yum remove htop
+
+yum list updates
+
+уum update
+
+уum update %имя пакета%
+
+# yum list installed
+
+yum list installed | grep php
+
+yum makecache

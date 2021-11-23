@@ -1,0 +1,4 @@
+alice:admin
+bob
+dima:admin
+alex
