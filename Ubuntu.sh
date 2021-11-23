@@ -73,4 +73,9 @@ sudo apt install software-properties-common
 sudo add-apt-repository ppa:ondrej/php
 sudo apt update
 sudo apt install php8.0 libapache2-mod-php8.0
-sudo apt install php8.0-cli php8.0-common php8.0-fpm php8.0-redis php8.0-snmp php8.0-xml
+sudo apt install php8.0-cli php8.0-common  php8.0-redis php8.0-snmp php8.0-xml
+#---------------Установка--PHP8-FPM---------------------------------#
+sudo apt update
+sudo apt install php8.0-fpm
+# sudo systemctl status php8.0-fpm
+# systemctl enable php8.0-fpm
