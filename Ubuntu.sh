@@ -47,6 +47,7 @@ http://nginx.org/packages/ubuntu `lsb_release -cs` nginx" \
         | sudo tee /etc/apt/sources.list.d/nginx.list
 sudo apt update
 sudo apt install nginx
+sudo ln -s /etc/nginx/sites-available/wordpress.example.com /etc/nginx/sites-enabled/
 # systemctl start nginx
 # systemctl enable nginx
 # systemctl status nginx
