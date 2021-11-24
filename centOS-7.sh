@@ -144,7 +144,9 @@ mkdir /var/www/wordpress.example.com/wp-content/uploads
 sudo chown -R nginx:nginx /var/www/wordpress.example.com/wp-content/uploads
 # cd /var/www/wordpress.example.com/wp-content/  chmod -R 777 uploads chmod -R 775 uploads
 chmod -R 775 /var/www/wordpress.example.com/wp-content/uploads
+# chown -R php-fpm:php-fpm /var/www/wordpress.example.com
 chown -R nginx:nginx /var/www/wordpress.example.com
+# chown -R php-fpm:php-fpm /var/www/wordpress.example.com
 chmod -R 775 /var/www/wordpress.example.com
 nginx -T | grep wordpress.example.com
 #
@@ -191,6 +193,9 @@ pure-pw useradd wordpress -u wordpress -g ftpusers -d /var/www/wordpress.example
 pure-pw mkdb
 systemctl restart pure-ftpd
 pure-pw show wordpress
+# sudo pure-pw passwd - смена пароля
+# sudo pure-ftpwho - простмотр активности
+
 # ПОЛЬЗОВАТЕЛЬ DRUPAL---------------------------
 sudo groupadd ftpusers1
 sudo chown -R :ftpusers1 /var/www/drupal.example.com/sites/default/files
