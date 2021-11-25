@@ -1,0 +1,25 @@
+# ----------------------СОЗДАНИЕ РЕЗЕРВНОЙ КОПИИ ПАПКИ С САЙТОМ-------------------
+cd /tmp
+tar -czvf wordpress_backup.tar.gz /var/www/wordpress.example.com
+
+# ------------------------ЭКСПОРТ БАЗЫ НЕ ВХОДЯ (не входя в MySQL)--------------------
+# mysqldump -u [имя_пользователя] -p [имя_бд] > [имя_бд].sql
+# mysqldump -u root -p wordpress_db > database_name.sql
+mysqldump -u root -p wordpress_db > wordpress_backup.sql
+
+# ----------------------КОПИРОВАНИЕ НЕСКОЛЬКИХ БАЗ-------------------------
+# mysqldump -u root -p --databases database_name_a database_name_b > databases_a_b.sql
+# -------------------ВСЕХ БАЗ----------------------
+# mysqldump -u root -p --all-databases > all_databases.sql
+# --------------------------ВСЕХ БАЗ В РАЗНЫЕ ФАЙЛЫ--------------------------------
+#for DB in $(mysql -e 'show databases' -s --skip-column-names); do
+  #  mysqldump $DB > "$DB.sql";
+#done
+# ----------------------ВОССТАНОВЛЕНИЕ ДАМПА MYSQL--------------------------
+#  mysqld  database_name < file.sql
+mysql -u root -p -e "create database wordpress_db" - создание базы
+mysql -u root -p wordpress_db < wordpress_backup.sql - импорт дампа
+#экспорт и импорт одной командой
+# mysqldump -u root -p wordpress_db | mysql -h remote_host -u root -p remote_database_name
+
+scp -P 21 -r / root@host_name или IP>:/home/arc/

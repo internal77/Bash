@@ -175,44 +175,40 @@ chmod -R 755 /var/lib/php/session
 # -----------------FTP НАСТРОЙКА----------------------------
 yum install pure-ftpd-selinux
 systemctl start pure-ftpd
+# PassivePortRange 40000 50000
 # iptables --append INPUT -m state --state NEW -m tcp -p tcp --dport 48000:50000 -j ACCEPT
 #
-syatemctl enable pure-ftpd
+sudo syatemctl enable pure-ftpd
 cd /etc/pure-ftpd
-nano /etc/pure-ftpd/pure-ftpd.conf > PassivePortRange 45000 50000 > PureDB /etc/pure-ftpd/pureftpd.pdb
+sudo nano /etc/pure-ftpd/pure-ftpd.conf > PassivePortRange 45000 50000 > PureDB /etc/pure-ftpd/pureftpd.pdb
 ftp -p -d 10.112.2.136
 netstat -tnulp | grep pure-ftpd
 # ПОЛЬЗОВАТЕЛЬ WORDPRESS---------------------------
-sudo groupadd ftpusers
-sudo chown -R :ftpusers /var/www/wordpress.example.com/wp-content/uploads
-chmod -R g+w /var/www/wordpress.example.com/wp-content/uploads
-useradd wordpress
-sudo gpasswd -a wordpress ftpusers
-chown wordpress:ftpusers /var/www/wordpress.example.com/wp-content/uploads -R
-pure-pw useradd wordpress -u wordpress -g ftpusers -d /var/www/wordpress.example.com/wp-content/uploads -m
-pure-pw mkdb
-systemctl restart pure-ftpd
-pure-pw show wordpress
+# sudo groupadd ftpusers
+sudo chown -R :php-fpm /var/www/wordpress.example.com/wp-content/uploads
+sudo chmod -R g+w /var/www/wordpress.example.com/wp-content/uploads
+# useradd wordpress
+# sudo gpasswd -a wordpress ftpusers
+sudo chown php-fpm:php-fpm /var/www/wordpress.example.com/wp-content/uploads -R
+sudo pure-pw useradd wordpress -u php-fpm -g php-fpm -d /var/www/wordpress.example.com/wp-content/uploads -m
+sudo pure-pw mkdb
+sudo systemctl restart pure-ftpd
+sudo pure-pw show wordpress
 # sudo pure-pw passwd - смена пароля
 # sudo pure-ftpwho - простмотр активности
 
 # ПОЛЬЗОВАТЕЛЬ DRUPAL---------------------------
-sudo groupadd ftpusers1
-sudo chown -R :ftpusers1 /var/www/drupal.example.com/sites/default/files
-chmod -R g+w /var/www/drupal.example.com/sites/default/files
-useradd drupal
-sudo gpasswd -a drupal ftpusers1
-chown drupal:ftpusers1 /var/www/drupal.example.com/sites/default/files -R
-pure-pw useradd drupal -u drupal -g ftpusers1 -d /var/www/drupal.example.com/sites/default/files -m
-pure-pw mkdb
-systemctl restart pure-ftpd
-pure-pw show drupal
+# sudo groupadd ftpusers1
+sudo chown -R :apache /var/www/drupal.example.com/sites/default/files
+sudo chmod -R g+w /var/www/drupal.example.com/sites/default/files
+# sudo gpasswd -a drupal ftpusers1
+sudo chown apache:apache /var/www/drupal.example.com/sites/default/files -R
+sudo pure-pw useradd drupal -u apache -g apache -d /var/www/drupal.example.comsites/default/files -m
+# pure-pw useradd drupal -u drupal -g ftpusers1 -d /var/www/drupal.example.com/sites/default/files -m
+sudo pure-pw mkdb
+sudo systemctl restart pure-ftpd
+sudo pure-pw show drupal
 #
 # Settings ftp /root/.netrc
 nano /root/.netrc
-#machine sitename1
-#login ftpuser1
-#password ftppassword1
-#machine sitename2
-#login ftpuser12e
-#password ftppassword2
+#machine sitename1 login ftpuser1 password ftppassword1
