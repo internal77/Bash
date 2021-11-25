@@ -183,6 +183,7 @@ cd /etc/pure-ftpd
 sudo nano /etc/pure-ftpd/pure-ftpd.conf > PassivePortRange 45000 50000 > PureDB /etc/pure-ftpd/pureftpd.pdb
 ftp -p -d 10.112.2.136
 netstat -tnulp | grep pure-ftpd
+sudo pure-pw list
 # ПОЛЬЗОВАТЕЛЬ WORDPRESS---------------------------
 # sudo groupadd ftpusers
 sudo chown -R :php-fpm /var/www/wordpress.example.com/wp-content/uploads
@@ -196,6 +197,7 @@ sudo systemctl restart pure-ftpd
 sudo pure-pw show wordpress
 # sudo pure-pw passwd - смена пароля
 # sudo pure-ftpwho - простмотр активности
+# pure-pw userdel -удаление пользователя
 
 # ПОЛЬЗОВАТЕЛЬ DRUPAL---------------------------
 # sudo groupadd ftpusers1
@@ -203,12 +205,12 @@ sudo chown -R :apache /var/www/drupal.example.com/sites/default/files
 sudo chmod -R g+w /var/www/drupal.example.com/sites/default/files
 # sudo gpasswd -a drupal ftpusers1
 sudo chown apache:apache /var/www/drupal.example.com/sites/default/files -R
-sudo pure-pw useradd drupal -u apache -g apache -d /var/www/drupal.example.comsites/default/files -m
+sudo pure-pw useradd drupal -u apache -g apache -d /var/www/drupal.example.com/sites/default/files -m
 # pure-pw useradd drupal -u drupal -g ftpusers1 -d /var/www/drupal.example.com/sites/default/files -m
 sudo pure-pw mkdb
 sudo systemctl restart pure-ftpd
 sudo pure-pw show drupal
-#
+more /var/log/messages | grep pure-ftpd   -  посмотреть ЛОГИ!!!!!
 # Settings ftp /root/.netrc
 nano /root/.netrc
 #machine sitename1 login ftpuser1 password ftppassword1

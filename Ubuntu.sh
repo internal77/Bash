@@ -121,12 +121,13 @@ sudo chown -R :apache /var/www/drupal.example.com/sites/default/files
 sudo chmod -R g+w /var/www/drupal.example.com/sites/default/files
 # sudo gpasswd -a drupal ftpusers1
 sudo chown apache:apache /var/www/drupal.example.com/sites/default/files -R
-sudo pure-pw useradd drupal -u apache -g apache -d /var/www/drupal.example.comsites/default/files -m
+sudo pure-pw useradd drupal -u apache -g apache -d /var/www/drupal.example.com/sites/default/files -m
 # pure-pw useradd drupal -u drupal -g ftpusers1 -d /var/www/drupal.example.com/sites/default/files -m
 sudo pure-pw mkdb
 sudo systemctl restart pure-ftpd
 sudo pure-pw show drupal
-#
+more /var/log/messages | grep pure-ftpd   -  посмотреть ЛОГИ!!!!!
+# pure-pw userdel -удаление пользователя
 # Settings ftp /root/.netrc
 nano /root/.netrc
 #machine sitename1 login ftpuser1 password ftppassword1
