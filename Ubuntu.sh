@@ -57,8 +57,8 @@ sudo ln -s /etc/nginx/sites-available/wordpress.example.com /etc/nginx/sites-ena
 # wget https://dev.mysql.com/get/mysql-apt-config_0.8.20-1_all.deb
 # sudo dpkg -i mysql-apt-config_0.8.20-1_all.deb
 sudo apt update
-sudo apt-get install mysql-server
-sudo mysql_secure_installation
+ sudo apt install mysql-server mysql-client
+ # sudo mysql_secure_installation
 # systemctl start mysql
 # systemctl enable mysql
 # systemctl status mysql

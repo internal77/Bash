@@ -2,13 +2,13 @@
 Enter password:
 
 ## Create database ##
-CREATE DATABASE wordpress;
+CREATE DATABASE wordpress_db;
 
 ## Creating new user ##
-CREATE USER wordpress@localhost IDENTIFIED BY "secure_password";
+CREATE USER 'wordpress_user'@'localhost' IDENTIFIED BY "6oWN.bzOIOIw!1";
 
 ## Grant privileges to database ##
-GRANT ALL ON wordpress.* TO 'wordpress_user'@'localhost';
+GRANT ALL ON wordpress_db.* TO 'wordpress_user'@'localhost';
 
 ## FLUSH privileges ##
 FLUSH PRIVILEGES;

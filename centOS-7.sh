@@ -93,6 +93,7 @@ systemctl enable php-fpm
 systemctl start php-fpm
 systemctl stop mysqld
 # создать файл /root/.my.cnf > chmod 600
+# sudo mysql_secure_installation
 # sudo grep 'temporary password' /var/log/mysqld.log - временный пароль # yFeli.WtG7i?
 # mysql -u root -p
 # ALTER USER 'root'@'localhost' IDENTIFIED BY '6oWN.bzOIOIw!?'; - изменение пароля - 6oWN.bzOIOIw!?
