@@ -116,7 +116,7 @@ systemctl stop mysqld
  # wordpress.example.com.conf настроить его, далее в директории
 #  httpd /etc/httpd/sites-available/ также создать конфиг wordpress.example.com.conf
 /etc/nginx/sites-enabled/ ??
-sudo ln -s /etc/nginx/sites-available/newhost /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/ /etc/nginx/sites-enabled/
 # Установка DRUPAL
 cd /
 cd /tmp
@@ -142,11 +142,11 @@ mv  -v /var/www/wordpress.example.com/wordpress/* /var/www/wordpress.example.com
 mv wp-config-sample.php wp-config.php
 nano wp-config.php > # данные базы данных и пользователя
 mkdir /var/www/wordpress.example.com/wp-content/uploads
-sudo chown -R nginx:nginx /var/www/wordpress.example.com/wp-content/uploads
+sudo chown -R php-fpm:php-fpm /var/www/wordpress.example.com
+sudo chown -R php-fpm:php-fpm /var/www/wordpress.example.com/wp-content/uploads
 # cd /var/www/wordpress.example.com/wp-content/  chmod -R 777 uploads chmod -R 775 uploads
 chmod -R 775 /var/www/wordpress.example.com/wp-content/uploads
 # chown -R php-fpm:php-fpm /var/www/wordpress.example.com
-chown -R nginx:nginx /var/www/wordpress.example.com
 # chown -R php-fpm:php-fpm /var/www/wordpress.example.com
 chmod -R 775 /var/www/wordpress.example.com
 nginx -T | grep wordpress.example.com
