@@ -1,0 +1,36 @@
+sudo -i
+sudo service mysql stop
+sudo killall -KILL mysql mysqld_safe mysqld
+sudo apt-get --yes purge mysql-server mysql-client
+sudo apt-get --yes autoremove --purge
+sudo apt-get autoclean
+sudo deluser --remove-home mysql
+sudo delgroup mysql
+sudo rm -rf /etc/apparmor.d/abstractions/mysql /etc/apparmor.d/cache/usr.sbin.mysqld /etc/mysql /var/lib/mysql /var/log/mysql* /var/log/upstart/mysql.log* /var/run/mysqld
+sudo updatedb
+sudo delgroup mysql
+sudo rm -rf /etc/apparmor.d/abstractions/mysql /etc/apparmor.d/cache/usr.sbin.mysqld /etc/mysql /var/lib/mysql /var/log/mysql* /var/log/upstart/mysql.log* /var/run/mysqld
+sudo updatedb
+exit
+
+
+rm -rf /etc/apparmor.d/abstractions/mysql
+rm -rf /etc/apparmor.d/cache/usr.sbin.mysqld
+find / -name 'mysql*' -exec rm -rf {} \;
+
+sudo apt-get remove --purge mysql-server mysql-client mysql-common -y
+sudo apt-get autoremove -y
+sudo apt-get autoclean
+rm -rf /etc/mysql
+
+wget –c https://dev.mysql.com/get/mysql-apt-config_0.8.20-1_all.deb
+sudo apt-get update
+sudo apt-get install mysql-server
+
+sudo systemctl stop mysql
+sudo killall -KILL mysql mysqld_safe mysqld
+sudo apt -y purge mysql-server mysql-client
+sudo apt -y autoremove --purge
+sudo apt autoclean
+sudo  rm -rf /etc/apparmor.d/abstractions/mysql /etc/apparmor.d/cache/usr.sbin.mysqld /etc/mysql /var/lib/mysql /var/log/mysql* /var/log/upstart/mysql.log* /var/run/mysqld
+ sudo find / -name .mysql_history -delete

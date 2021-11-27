@@ -1,4 +1,4 @@
 # /root/.netrc
-mashine 10.112.2.136 login drupal password 1234567890
+machine 10.112.2.136 login drupal password 1234567890
 
-mashine 10.112.2.136 login wordpess password 1234567890
+machine 10.112.2.136 login wordpess password 1234567890

@@ -44,7 +44,7 @@ git --version
 # symlink ln -s /data/mysql /var/lib/mysql    ln -s /data/www /var/www
 # created swap file - sudo fallocate -l 1G /swap(sudo dd if=/dev/zero of=/swap bs=1MiB count=1000) - sudo chmod 600 /swap - sudo mkswap /swap - sudo swapon /swap - sudo nano /etc/fstab > /swap none swap defaults 0 0
 #-------------------------------------------------------------------------------------#
-# install Apache
+# install Apachecd /var/www
 sudo yum -y update httpd
 sudo yum -y install httpd
 sudo systemctl start httpd

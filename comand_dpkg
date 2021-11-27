@@ -1,0 +1,4 @@
+dpkg --get-selections - проверка пакетов
+dpkg --get-selections | grep gcc  - проверка и сортировка
+dpkg --get-selections | wc -l - количество
+dpkg -L gcc-5 - все файлы пакета

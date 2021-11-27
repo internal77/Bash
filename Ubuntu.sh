@@ -54,10 +54,17 @@ sudo ln -s /etc/nginx/sites-available/wordpress.example.com /etc/nginx/sites-ena
 # /etc/nginx/conf.d/
 #-----------------Установка MYSQL-------------------------#
 # cd /tmp
-# wget https://dev.mysql.com/get/mysql-apt-config_0.8.20-1_all.deb
-# sudo dpkg -i mysql-apt-config_0.8.20-1_all.deb
+wget https://dev.mysql.com/get/mysql-apt-config_0.8.20-1_all.deb
+# sudo dpkg -i mysql-apt-config_0.8.20-1_all.deb - or
+sudo apt install ./mysql-apt-config_0.8.20-1_all.deb
+sudo sed -i 's/xenial/focal/g' /etc/apt/sources.list.d/mysql.list
 sudo apt update
- sudo apt install mysql-server mysql-client
+sudo apt install mysql-server
+#3-----------------------или-----------------------#
+wget –c https://dev.mysql.com/get/mysql-apt-config_0.8.20-1_all.deb
+sudo apt-get update
+sudo apt-get install mysql-server
+# /etc/ my.cnf > bind-address=127.0.0.1
  # sudo mysql_secure_installation
 # systemctl start mysql
 # systemctl enable mysql
@@ -113,6 +120,8 @@ sudo pure-pw useradd wordpress -u php-fpm -g php-fpm -d /var/www/wordpress.examp
 sudo pure-pw mkdb
 sudo systemctl restart pure-ftpd
 sudo pure-pw show wordpress
+ftp -p -d 10.112.2.156
+netstat -tnulp | grep pure-ftpd
 # sudo pure-pw passwd - смена пароля
 # sudo pure-ftpwho - простмотр активности
 
