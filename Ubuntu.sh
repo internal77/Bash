@@ -47,7 +47,7 @@ http://nginx.org/packages/ubuntu `lsb_release -cs` nginx" \
         | sudo tee /etc/apt/sources.list.d/nginx.list
 sudo apt update
 sudo apt install nginx
-sudo ln -s /etc/nginx/sites-available/wordpress.example.com /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/wordpress.example.com.conf /etc/nginx/sites-enabled/
 # systemctl start nginx
 # systemctl enable nginx
 # systemctl status nginx
@@ -99,6 +99,7 @@ sudo apt update
 # useradd php-fpm
 # systemctl status php8.0-fpm
 # /etc/php/8.0/fpm/php-fpm.conf
+# /etc/php/8.0/fpm/pool.d/www.conf
 # -------------------УСТАНОВКА PURE-FTPD---------------------
 apt-get update -y
 apt-install ftp
@@ -108,7 +109,7 @@ apt-get install pure-ftpd -y
 # systemctl start pure-ftpd
 cd /etc/pure-ftpd
 nano /etc/pure-ftpd/pure-ftpd.conf > PassivePortRange 45000 50000 > PureDB /etc/pure-ftpd/pureftpd.pdb
-ftp -p -d 101.12.2.125
+ftp -p -d 10.112.2.125
 netstat -tnulp | grep pure-ftpd
 # ПОЛЬЗОВАТЕЛЬ WORDPRESS---------------------------
 # sudo groupadd ftpusers
