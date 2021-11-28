@@ -15,9 +15,9 @@ cat /root/tasks/1/filetopackagename
 sudo apt update
 sudo apt install -y build-essential libssl-dev libcurl4-gnutls-dev libz-dev zlib1g-dev libexpat1-dev gettext unzip
 cd /usr/local/src
-wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.34.0.tar.gz
-tar xzf git-2.34.0.tar.gz
-cd git-2.34.0
+wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.34.1.tar.gz
+tar xzf git-2.34.1.tar.gz
+cd git-2.34.1
 make prefix=/usr/local/sbin all
 make prefix=/usr/local/sbin install
 echo "export PATH=$PATH:/usr/local/sbin" >> /etc/bashrc
@@ -29,8 +29,8 @@ git --version
 # mkdir /data, mount /dev/nvme1n1p1 /data
 # sudo blkid
 # sudo nano /etc/fstab
-# symlink ln -s /data/mysql /var/lib/mysql    ln -s /data/www /var/www
-# created swap file - sudo fallocate -l 1G /swap - sudo mkswap /swap - sudo swapon /swap - sudo nano /etc/fstab > /swap none swap defaults 0 0
+# symlink ln -s /data/mysql /var/lib/mysql    ln -s /data/www /var/www (проверить - ls -l /var/lib/mysql ls -l /var/www)
+# created swap file - sudo fallocate -l 1G /swap - sudo mkswap /swap - sudo chmod 600 /swap - sudo swapon /swap - sudo nano /etc/fstab > /swap none swap defaults 0 0
 # -----------------Установка NGINX----------------------
 sudo apt update
 sudo apt upgrade
@@ -67,7 +67,7 @@ sudo apt-get install mysql-server
 # /etc/ my.cnf > bind-address=127.0.0.1
  # sudo mysql_secure_installation
 # systemctl start mysql
-# systemctl enable mysql
+  # systemctl enable mysql
 # systemctl status mysql
 
 #---------------Установка--APACHE-----------------------------------#
@@ -91,26 +91,28 @@ sudo apt install software-properties-common
 sudo add-apt-repository ppa:ondrej/php
 sudo apt update
 sudo apt install php8.0 libapache2-mod-php8.0
-sudo apt install php8.0-cli php8.0-common  php8.0-redis php8.0-snmp php8.0-xml
+sudo apt install php8.0 php8.0-cli php8.0-fpm  php8.0-pdo php8.0-mysql php8.0-zip php8.0-gd php8.0-mbstring php8.0-curl php8.0-xml php-pear php8.0-bcmath
 #---------------Установка--PHP8-FPM---------------------------------#
 sudo apt update
-sudo apt install php8.0-fpm
 # sudo systemctl status php8.0-fpm
 # systemctl enable php8.0-fpm
 # useradd php-fpm
+# systemctl status php8.0-fpm
 # /etc/php/8.0/fpm/php-fpm.conf
 # -------------------УСТАНОВКА PURE-FTPD---------------------
 apt-get update -y
+apt-install ftp
 apt-get install pure-ftpd -y
 # systemctl status pure-ftpd
 # systemctl enable pure-ftpd
 # systemctl start pure-ftpd
 cd /etc/pure-ftpd
 nano /etc/pure-ftpd/pure-ftpd.conf > PassivePortRange 45000 50000 > PureDB /etc/pure-ftpd/pureftpd.pdb
-ftp -p -d 10.112.2.156
+ftp -p -d 101.12.2.125
 netstat -tnulp | grep pure-ftpd
 # ПОЛЬЗОВАТЕЛЬ WORDPRESS---------------------------
 # sudo groupadd ftpusers
+sudo chown -R php-fpm:php-fpm /var/www/wordpress.example.com
 sudo chown -R :php-fpm /var/www/wordpress.example.com/wp-content/uploads
 sudo chmod -R g+w /var/www/wordpress.example.com/wp-content/uploads
 # useradd wordpress
@@ -120,23 +122,23 @@ sudo pure-pw useradd wordpress -u php-fpm -g php-fpm -d /var/www/wordpress.examp
 sudo pure-pw mkdb
 sudo systemctl restart pure-ftpd
 sudo pure-pw show wordpress
-ftp -p -d 10.112.2.156
+ftp -p -d 10.112.2.125
 netstat -tnulp | grep pure-ftpd
 # sudo pure-pw passwd - смена пароля
 # sudo pure-ftpwho - простмотр активности
 
 # ПОЛЬЗОВАТЕЛЬ DRUPAL---------------------------
-sudo chown -R :apache /var/www/drupal.example.com/sites/default/files
-sudo chmod -R g+w /var/www/drupal.example.com/sites/default/files
+#sudo chown -R :apache /var/www/drupal.example.com/sites/default/files
+#sudo chmod -R g+w /var/www/drupal.example.com/sites/default/files
 # sudo gpasswd -a drupal ftpusers1
-sudo chown apache:apache /var/www/drupal.example.com/sites/default/files -R
-sudo pure-pw useradd drupal -u apache -g apache -d /var/www/drupal.example.com/sites/default/files -m
+#sudo chown apache:apache /var/www/drupal.example.com/sites/default/files -R
+#sudo pure-pw useradd drupal -u apache -g apache -d /var/www/drupal.example.com/sites/default/files -m
 # pure-pw useradd drupal -u drupal -g ftpusers1 -d /var/www/drupal.example.com/sites/default/files -m
-sudo pure-pw mkdb
-sudo systemctl restart pure-ftpd
-sudo pure-pw show drupal
-more /var/log/messages | grep pure-ftpd   -  посмотреть ЛОГИ!!!!!
+#sudo pure-pw mkdb
+#sudo systemctl restart pure-ftpd
+#sudo pure-pw show drupal
+#more /var/log/messages | grep pure-ftpd   -  посмотреть ЛОГИ!!!!!
 # pure-pw userdel -удаление пользователя
 # Settings ftp /root/.netrc
-nano /root/.netrc
+#nano /root/.netrc
 #machine sitename1 login ftpuser1 password ftppassword1

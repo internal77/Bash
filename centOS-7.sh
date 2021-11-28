@@ -26,9 +26,9 @@ sudo yum -y update
 sudo yum -y install make
 sudo yum -y install -y build-essential libssl-dev libcurl4-gnutls-dev perl-devel openssl-devel curl-devel expat-devel gettext-devel openssl-devel libexpat1-dev gettext unzip wget gcc
 cd /usr/local/src
-wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.34.0.tar.gz
+wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.34.1.tar.gz
 tar xzf git-2.34.0.tar.gz
-cd git-2.34.0
+cd git-2.34.1
 make prefix=/usr/local/git all
 make prefix=/usr/local/git install
 echo "export PATH=$PATH:/usr/local/git/bin" >> /etc/bashrc # export PATH="$PATH:/usr/local/sbin/bin"
