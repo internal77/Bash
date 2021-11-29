@@ -144,10 +144,7 @@ nano wp-config.php > # данные базы данных и пользоват�
 mkdir /var/www/wordpress.example.com/wp-content/uploads
 sudo chown -R php-fpm:php-fpm /var/www/wordpress.example.com
 sudo chown -R php-fpm:php-fpm /var/www/wordpress.example.com/wp-content/uploads
-# cd /var/www/wordpress.example.com/wp-content/  chmod -R 777 uploads chmod -R 775 uploads
 chmod -R 775 /var/www/wordpress.example.com/wp-content/uploads
-# chown -R php-fpm:php-fpm /var/www/wordpress.example.com
-# chown -R php-fpm:php-fpm /var/www/wordpress.example.com
 chmod -R 775 /var/www/wordpress.example.com
 nginx -T | grep wordpress.example.com
 #
@@ -170,7 +167,6 @@ systemctl enable php80-php-fpm
 # systemctl restart nginx
 mkdir -p /var/lib/php/session
 chown -R nginx:nginx /var/lib/php/session
-chown -R nginx:nginx /var/lib/php/session
 chmod -R 755 /var/lib/php/session
 # -------------------------------
 # -----------------FTP НАСТРОЙКА----------------------------
@@ -192,7 +188,8 @@ sudo chmod -R g+w /var/www/wordpress.example.com/wp-content/uploads
 # useradd wordpress
 # sudo gpasswd -a wordpress ftpusers
 sudo chown php-fpm:php-fpm /var/www/wordpress.example.com/wp-content/uploads -R
-sudo pure-pw useradd wordpress -u php-fpm -g php-fpm -d /var/www/wordpress.example.com/wp-content/uploads -m
+# sudo pure-pw useradd wordpress -u php-fpm -g php-fpm -d /var/www/wordpress.example.com/wp-content/uploads -m
+sudo pure-pw useradd wordpress -u php-fpm -g php-fpm -d /var/www/wordpress.example.com -m
 sudo pure-pw mkdb
 sudo systemctl restart pure-ftpd
 sudo pure-pw show wordpress
@@ -206,7 +203,8 @@ sudo chown -R :apache /var/www/drupal.example.com/sites/default/files
 sudo chmod -R g+w /var/www/drupal.example.com/sites/default/files
 # sudo gpasswd -a drupal ftpusers1
 sudo chown apache:apache /var/www/drupal.example.com/sites/default/files -R
-sudo pure-pw useradd drupal -u apache -g apache -d /var/www/drupal.example.com/sites/default/files -m
+# sudo pure-pw useradd drupal -u apache -g apache -d /var/www/drupal.example.com/sites/default/files -m
+sudo pure-pw useradd drupal -u apache -g apache -d /var/www/drupal.example.com -m
 # pure-pw useradd drupal -u drupal -g ftpusers1 -d /var/www/drupal.example.com/sites/default/files -m
 sudo pure-pw mkdb
 sudo systemctl restart pure-ftpd

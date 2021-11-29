@@ -92,6 +92,9 @@ sudo add-apt-repository ppa:ondrej/php
 sudo apt update
 sudo apt install php8.0 libapache2-mod-php8.0
 sudo apt install php8.0 php8.0-cli php8.0-fpm  php8.0-pdo php8.0-mysql php8.0-zip php8.0-gd php8.0-mbstring php8.0-curl php8.0-xml php-pear php8.0-bcmath
+mkdir -p /var/lib/php/sessions
+chown -R nginx:nginx /var/lib/php/sessions
+chmod -R 755 /var/lib/php/sessions
 #---------------Установка--PHP8-FPM---------------------------------#
 sudo apt update
 # sudo systemctl status php8.0-fpm
@@ -119,7 +122,8 @@ sudo chmod -R g+w /var/www/wordpress.example.com/wp-content/uploads
 # useradd wordpress
 # sudo gpasswd -a wordpress ftpusers
 sudo chown php-fpm:php-fpm /var/www/wordpress.example.com/wp-content/uploads -R
-sudo pure-pw useradd wordpress -u php-fpm -g php-fpm -d /var/www/wordpress.example.com/wp-content/uploads -m
+# sudo pure-pw useradd wordpress -u php-fpm -g php-fpm -d /var/www/wordpress.example.com/wp-content/uploads -m
+sudo pure-pw useradd wordpress -u php-fpm -g php-fpm -d /var/www/wordpress.example.com -m
 sudo pure-pw mkdb
 sudo systemctl restart pure-ftpd
 sudo pure-pw show wordpress
@@ -134,7 +138,7 @@ netstat -tnulp | grep pure-ftpd
 # sudo gpasswd -a drupal ftpusers1
 #sudo chown apache:apache /var/www/drupal.example.com/sites/default/files -R
 #sudo pure-pw useradd drupal -u apache -g apache -d /var/www/drupal.example.com/sites/default/files -m
-# pure-pw useradd drupal -u drupal -g ftpusers1 -d /var/www/drupal.example.com/sites/default/files -m
+# sudo pure-pw useradd drupal -u apache -g apache -d /var/www/drupal.example.com -m
 #sudo pure-pw mkdb
 #sudo systemctl restart pure-ftpd
 #sudo pure-pw show drupal
