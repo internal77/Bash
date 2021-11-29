@@ -1,4 +1,4 @@
-# /etc/nginx/conf.d
+# /etc/nginx/conf.d -БЕЗ APACHE и PROXY
 server {
 listen  80;
              server_name wordpress.example.com www.wordpress.example.com;
