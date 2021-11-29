@@ -147,3 +147,19 @@ netstat -tnulp | grep pure-ftpd
 # Settings ftp /root/.netrc
 #nano /root/.netrc
 #machine sitename1 login ftpuser1 password ftppassword1
+
+#-----------------POCTFIX-----------------------------------#
+sudo apt update
+sudo apt install postfix mailutils
+systemctl restart php8.0-fpm
+apt-get install php-mysql php-mbstring php-imap
+wget https://sourceforge.net/projects/postfixadmin/files/latest/download -O postfixadmin.tar.gz
+mkdir /var/www/postfixadmin
+tar -C /var/www/postfixadmin -xvf postfixadmin.tar.gz --strip-components 1
+mkdir /var/www/postfixadmin/templates_c
+mysql
+CREATE DATABASE postfix DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+CREATE USER 'postfix'@'localhost' IDENTIFIED BY "postfix123";
+GRANT ALL ON postfix.* TO 'postfix'@'localhost';
+quit
+nano /var/www/postfixadmin/config.local.php
