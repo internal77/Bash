@@ -105,7 +105,7 @@ sudo apt update
 # /etc/php/8.0/fpm/pool.d/www.conf
 # -------------------УСТАНОВКА PURE-FTPD---------------------
 apt-get update -y
-apt-install ftp
+apt install ftp
 apt-get install pure-ftpd -y
 # systemctl status pure-ftpd
 # systemctl enable pure-ftpd
@@ -122,6 +122,7 @@ sudo chmod -R g+w /var/www/wordpress.example.com/wp-content/uploads
 # useradd wordpress
 # sudo gpasswd -a wordpress ftpusers
 sudo chown php-fpm:php-fpm /var/www/wordpress.example.com/wp-content/uploads -R
+chmod -R 755 /var/www/wordpress.example.com/wp-content/uploads
 # sudo pure-pw useradd wordpress -u php-fpm -g php-fpm -d /var/www/wordpress.example.com/wp-content/uploads -m
 sudo pure-pw useradd wordpress -u php-fpm -g php-fpm -d /var/www/wordpress.example.com -m
 sudo pure-pw mkdb
@@ -163,3 +164,20 @@ CREATE USER 'postfix'@'localhost' IDENTIFIED BY "postfix123";
 GRANT ALL ON postfix.* TO 'postfix'@'localhost';
 quit
 nano /var/www/postfixadmin/config.local.php
+
+####------------------------###------------------------------######
+############УСТАНОВКА почты№№№№№№№№№№№№№№№№№№№№№№
+sudo nano /etc/hosts
+3.13.131.152 mail.example.com mail
+sudo certbot certonly --standalone
+sudo apt-get update && sudo apt-get upgrade
+sudo dpkg-reconfigure postfix
+sudo apt-get install postfix postfix-mysql dovecot-core dovecot-imapd dovecot-pop3d dovecot-lmtpd dovecot-mysql mysql-server
+sudo systemctl enable postfix dovecot
+sudo nano /etc/dovecot/dovecot.conf > !include conf.d/*.conf protocols = imap lmtp
+sudo nano /etc/dovecot/conf.d/10-master.conf
+netstat -l -p | grep lmtp
+sudo nano /etc/postfix/main.cf
+sudo postconf > /dev/null
+sudo systemctl restart postfix
+sudo nano /etc/dovecot/conf.d/20-lmtp.conf - # https://doc.dovecot.org/configuration_manual/howto/postfix_dovecot_lmtp/

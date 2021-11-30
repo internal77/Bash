@@ -1,0 +1,3 @@
+# /etc/postfix/conf.d/main.cf
+virtual_transport = lmtp:unix:private/dovecot-lmtp
+#mailbox_transport = lmtp:unix:private/dovecot-lmtp
