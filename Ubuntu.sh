@@ -255,4 +255,13 @@ sudo cp /etc/dovecot/conf.d/10-auth.conf /etc/dovecot/conf.d/10-auth.conf.orig
 sudo cp /etc/dovecot/dovecot-sql.conf.ext /etc/dovecot/dovecot-sql.conf.ext.orig
 sudo cp /etc/dovecot/conf.d/10-master.conf /etc/dovecot/conf.d/10-master.conf.orig
 sudo cp /etc/dovecot/conf.d/10-ssl.conf /etc/dovecot/conf.d/10-ssl.conf.orig
-sudo nano /etc/dovecot/dovecot.conf
+sudo nano /etc/dovecot/dovecot.conf > protocols = imap pop3 lmtp postmaster_address = postmaster at example.com postmaster_address = postmaster at example.net
+sudo nano /etc/dovecot/conf.d/10-mail.conf > mail_location = maildir:/var/mail/vhosts/%d/%n/ > mail_privileged_group = mail
+sudo mkdir -p /var/mail/vhosts/example.com
+sudo mkdir -p /var/mail/vhosts/example.net
+sudo groupadd -g 5000 vmail
+sudo useradd -g vmail -u 5000 vmail -d /var/mail
+sudo chown -R vmail:vmail /var/mail
+sudo nano /etc/dovecot/conf.d/10-auth.conf > disable_plaintext_auth = yes > auth_mechanisms = plain login > !include auth-system.conf.ext > !include auth-sql.conf.ext
+sudo nano /etc/dovecot/conf.d/auth-sql.conf.ext - # https://www.linode.com/docs/guides/email-with-postfix-dovecot-and-mysql/
+sudo nano /etc/dovecot/dovecot-sql.conf.ext > # https://www.linode.com/docs/guides/email-with-postfix-dovecot-and-mysql/
