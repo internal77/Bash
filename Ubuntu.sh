@@ -169,6 +169,7 @@ nano /var/www/postfixadmin/config.local.php
 ############УСТАНОВКА почты№№№№№№№№№№№№№№№№№№№№№№
 sudo nano /etc/hosts
 3.13.131.152 mail.example.com mail
+3.13.131.152 mail.example.net mail
 sudo certbot certonly --standalone
 sudo apt-get update && sudo apt-get upgrade
 sudo dpkg-reconfigure postfix
@@ -183,17 +184,23 @@ sudo systemctl restart postfix
 sudo nano /etc/dovecot/conf.d/20-lmtp.conf - # https://doc.dovecot.org/configuration_manual/howto/postfix_dovecot_lmtp/
 #--------------настройка и установка-------------------------#
 # https://www.linode.com/docs/guides/email-with-postfix-dovecot-and-mysql/
+sudo nano /etc/mailadmin - файлы для данных суперпользователя Postfixadmin
+sudo nano /etc/example.com - данные для почтового ящика в домене example.com
+sudo nano /etc/example.net - данные для почтового ящика в домене example.net
 sudo mysql
+#----------------------creat database-------------------------#
 CREATE DATABASE mailserver;
 CREATE USER 'mailuser'@'localhost' IDENTIFIED BY 'password';
 GRANT SELECT ON mailserver.* TO 'mailuser'@'localhost';
 FLUSH PRIVILEGES;
 USE mailserver;
+
 CREATE TABLE `virtual_domains` (
   `id` int(11) NOT NULL auto_increment,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 CREATE TABLE `virtual_users` (
   `id` int(11) NOT NULL auto_increment,
   `domain_id` int(11) NOT NULL,
@@ -203,6 +210,7 @@ CREATE TABLE `virtual_users` (
   UNIQUE KEY `email` (`email`),
   FOREIGN KEY (domain_id) REFERENCES virtual_domains(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 CREATE TABLE `virtual_aliases` (
   `id` int(11) NOT NULL auto_increment,
   `domain_id` int(11) NOT NULL,
@@ -211,3 +219,40 @@ CREATE TABLE `virtual_aliases` (
   PRIMARY KEY (`id`),
   FOREIGN KEY (domain_id) REFERENCES virtual_domains(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+#-------------example.com----------------------#
+INSERT INTO mailserver.virtual_domains (name) VALUES ('example.com');
+SELECT * FROM mailserver.virtual_domains;
+# sudo doveadm pw -s SHA512-CRYPT -p "password" -r 5000 - шифрование пароля
+INSERT INTO mailserver.virtual_users (domain_id, password , email) VALUES ('1', 'password', 'user@example.com');
+SELECT * FROM mailserver.virtual_users;
+#-------------example.com-alias---------------------#
+INSERT INTO mailserver.virtual_aliases (domain_id, source, destination) VALUES ('1', 'alias@example.com', 'user@example.com');
+SELECT * FROM mailserver.virtual_aliases;
+#-------------example.net----------------------#
+INSERT INTO mailserver.virtual_domains (name) VALUES ('example.net');
+SELECT * FROM mailserver.virtual_domains;
+# sudo doveadm pw -s SHA512-CRYPT -p "password" -r 5000 - шифрование пароля
+INSERT INTO mailserver.virtual_users (domain_id, password , email) VALUES ('2', 'password', 'user@example.net');
+SELECT * FROM mailserver.virtual_users;
+#-------------example.net-alias---------------------#
+INSERT INTO mailserver.virtual_aliases (domain_id, source, destination) VALUES ('2', 'alias@example.net', 'user@example.net');
+
+#--------------------------setting POSTFIX main.cnf----------------------#
+sudo cp /etc/postfix/main.cf /etc/postfix/main.cf.orig
+sudo nano /etc/postfix/main.cf
+sudo nano /etc/postfix/mysql-virtual-mailbox-domains.cf
+sudo nano /etc/postfix/mysql-virtual-mailbox-maps.cf
+sudo nano /etc/postfix/mysql-virtual-alias-maps.cf
+sudo nano /etc/postfix/mysql-virtual-email2email.cf
+sudo cp /etc/postfix/master.cf /etc/postfix/master.cf.orig
+sudo nano /etc/postfix/master.cf
+sudo chmod -R o-rwx /etc/postfix
+sudo systemctl restart postfix
+#-------------------Configuring Dovecot----------------------#
+sudo cp /etc/dovecot/dovecot.conf /etc/dovecot/dovecot.conf.orig
+sudo cp /etc/dovecot/conf.d/10-mail.conf /etc/dovecot/conf.d/10-mail.conf.orig
+sudo cp /etc/dovecot/conf.d/10-auth.conf /etc/dovecot/conf.d/10-auth.conf.orig
+sudo cp /etc/dovecot/dovecot-sql.conf.ext /etc/dovecot/dovecot-sql.conf.ext.orig
+sudo cp /etc/dovecot/conf.d/10-master.conf /etc/dovecot/conf.d/10-master.conf.orig
+sudo cp /etc/dovecot/conf.d/10-ssl.conf /etc/dovecot/conf.d/10-ssl.conf.orig
+sudo nano /etc/dovecot/dovecot.conf
