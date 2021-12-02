@@ -266,6 +266,12 @@ sudo nano /etc/postfix/master.cf
 sudo chmod -R o-rwx /etc/postfix
 sudo systemctl restart postfix
 #-------------------Configuring Dovecot----------------------#
+# install sertificate - https://certbot.eff.org/instructions?ws=nginx&os=ubuntufocal
+#sudo snap install core
+#sudo snap refresh core
+#sudo snap install --classic certbot
+#sudo ln -s /snap/bin/certbot /usr/bin/certbot
+#sudo certbot --nginx
 sudo cp /etc/dovecot/dovecot.conf /etc/dovecot/dovecot.conf.orig
 sudo cp /etc/dovecot/conf.d/10-mail.conf /etc/dovecot/conf.d/10-mail.conf.orig
 sudo cp /etc/dovecot/conf.d/10-auth.conf /etc/dovecot/conf.d/10-auth.conf.orig
@@ -282,3 +288,8 @@ sudo chown -R vmail:vmail /var/mail
 sudo nano /etc/dovecot/conf.d/10-auth.conf > disable_plaintext_auth = yes > auth_mechanisms = plain login > !include auth-system.conf.ext > !include auth-sql.conf.ext
 sudo nano /etc/dovecot/conf.d/auth-sql.conf.ext - # https://www.linode.com/docs/guides/email-with-postfix-dovecot-and-mysql/
 sudo nano /etc/dovecot/dovecot-sql.conf.ext > # https://www.linode.com/docs/guides/email-with-postfix-dovecot-and-mysql/
+sudo chown -R vmail:dovecot /etc/dovecot
+sudo nano /etc/dovecot/conf.d/10-master.conf
+sudo nano /etc/dovecot/conf.d/10-ssl.conf
+sudo systemctl restart dovecot
+echo "Email body text" | sudo mail -s "Email subject line" sumyagel@gmail.com -aFrom:user@example.com - # тестовое письмо
