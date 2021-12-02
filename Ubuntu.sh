@@ -111,7 +111,24 @@ apt-get install pure-ftpd -y
 # systemctl enable pure-ftpd
 # systemctl start pure-ftpd
 cd /etc/pure-ftpd
-nano /etc/pure-ftpd/pure-ftpd.conf > PassivePortRange 45000 50000 > PureDB /etc/pure-ftpd/pureftpd.pdb
+echo “yes” > /etc/pure-ftpd/conf/NoAnonymous
+echo ‘yes’ > BrokenClientsCompatibility
+echo ’50’ > MaxClientsNumber
+echo ‘5’ > MaxClientsPerIP
+echo ‘no’ > VerboseLog
+echo ‘yes’ > DisplayDotFiles
+echo ‘yes’ > NoChmod
+echo ‘no’ > AnonymousOnly
+echo ‘no’ > PAMAuthentication
+echo ‘no’ > UnixAuthentication
+echo ‘/etc/pure-ftpd/pureftpd.pdb’ > PureDB
+echo ‘yes’ > DontResolve
+echo ’15’ > MaxIdleTime
+echo ‘2000 8’ > LimitRecursion
+echo ‘yes’ > AntiWarez
+echo ‘no’ > AnonymousCanCreateDirs
+echo ‘4’ > MaxLoad
+echo "50000 50300" > /etc/pure-ftpd/conf/PassivePortRange
 ftp -p -d 10.112.2.125
 netstat -tnulp | grep pure-ftpd
 # ПОЛЬЗОВАТЕЛЬ WORDPRESS---------------------------
