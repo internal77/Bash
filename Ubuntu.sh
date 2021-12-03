@@ -170,7 +170,16 @@ http://wordpress.example.com/mailadmin/login.php
 $CONF['setup_password'] = '$2y$10$THqtAW0itf/WN2aRarPftOmIiVDpa3XwcDYJHvvERLKZOjniAUAp.';
 postfixadmin@example.com
 postfix123
-
+############УСТАНОВКА RoundCube№№№№№№№№№№№№№№№№№№№№№№
+sudo wget https://github.com/roundcube/roundcubemail/releases/download/1.5.1/roundcubemail-1.5.1-complete.tar.gz
+sudo tar xzf roundcubemail-1.5.1-complete.tar.gz
+sudo cp -r roundcubemail-1.5.1 /var/www/roundcube
+sudo chown -R php-fpm.php-fpm /var/www/roundcube/
+MySQL
+create database roundcube;
+create user roundcube@localhost identified by 'roundcube123';
+grant all on roundcube.* to roundcube@localhost;
+flush privileges;
 
 ####------------------------###------------------------------######
 ############УСТАНОВКА почты№№№№№№№№№№№№№№№№№№№№№№
