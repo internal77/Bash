@@ -112,22 +112,7 @@ apt-get install pure-ftpd -y
 # systemctl start pure-ftpd
 cd /etc/pure-ftpd
 echo “yes” > /etc/pure-ftpd/conf/NoAnonymous
-echo ‘yes’ > BrokenClientsCompatibility
-echo ’50’ > MaxClientsNumber
-echo ‘5’ > MaxClientsPerIP
-echo ‘no’ > VerboseLog
-echo ‘yes’ > DisplayDotFiles
-echo ‘yes’ > NoChmod
-echo ‘no’ > AnonymousOnly
-echo ‘no’ > PAMAuthentication
-echo ‘no’ > UnixAuthentication
 echo ‘/etc/pure-ftpd/pureftpd.pdb’ > PureDB
-echo ‘yes’ > DontResolve
-echo ’15’ > MaxIdleTime
-echo ‘2000 8’ > LimitRecursion
-echo ‘yes’ > AntiWarez
-echo ‘no’ > AnonymousCanCreateDirs
-echo ‘4’ > MaxLoad
 echo "50000 50300" > /etc/pure-ftpd/conf/PassivePortRange
 ftp -p -d 10.112.2.125
 netstat -tnulp | grep pure-ftpd
@@ -180,7 +165,12 @@ CREATE DATABASE postfix DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_
 CREATE USER 'postfix'@'localhost' IDENTIFIED BY "postfix123";
 GRANT ALL ON postfix.* TO 'postfix'@'localhost';
 quit
-nano /var/www/postfixadmin/config.local.php
+nano /var/www/postfixadmin/config.local.php # -
+http://wordpress.example.com/mailadmin/login.php
+$CONF['setup_password'] = '$2y$10$THqtAW0itf/WN2aRarPftOmIiVDpa3XwcDYJHvvERLKZOjniAUAp.';
+postfixadmin@example.com
+postfix123
+
 
 ####------------------------###------------------------------######
 ############УСТАНОВКА почты№№№№№№№№№№№№№№№№№№№№№№
