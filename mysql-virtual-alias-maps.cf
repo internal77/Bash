@@ -1,6 +1,6 @@
 # /etc/postfix/mysql-virtual-alias-maps.cf
-user = mailuser
-password = password
+user = postfix
+password = postfix123
 hosts = 127.0.0.1
-dbname = mailserver
+dbname = postfix
 query = SELECT destination FROM virtual_aliases WHERE source='%s'

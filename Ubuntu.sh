@@ -93,7 +93,7 @@ sudo apt update
 sudo apt install php8.0 libapache2-mod-php8.0
 sudo apt install php8.0 php8.0-cli php8.0-fpm  php8.0-pdo php8.0-mysql php8.0-zip php8.0-gd php8.0-mbstring php8.0-curl php8.0-xml php-pear php8.0-bcmath
 mkdir -p /var/lib/php/sessions
-chown -R nginx:nginx /var/lib/php/sessions
+chown -R php-fpm:php-fpm /var/lib/php/sessions
 chmod -R 755 /var/lib/php/sessions
 #---------------Установка--PHP8-FPM---------------------------------#
 sudo apt update
@@ -166,10 +166,13 @@ CREATE USER 'postfix'@'localhost' IDENTIFIED BY "postfix123";
 GRANT ALL ON postfix.* TO 'postfix'@'localhost';
 quit
 nano /var/www/postfixadmin/config.local.php # -
+sudo mkdir /var/log/postfixadmin
 http://wordpress.example.com/mailadmin/login.php
 $CONF['setup_password'] = '$2y$10$THqtAW0itf/WN2aRarPftOmIiVDpa3XwcDYJHvvERLKZOjniAUAp.';
 postfixadmin@example.com
 postfix123
+iptables -I INPUT 1 -p tcp --match multiport --dports 25,465,587 -j ACCEPT
+iptables -I INPUT 1 -p tcp --match multiport --dports 110,143,993,995 -j ACCEPT
 ############УСТАНОВКА RoundCube№№№№№№№№№№№№№№№№№№№№№№
 sudo wget https://github.com/roundcube/roundcubemail/releases/download/1.5.1/roundcubemail-1.5.1-complete.tar.gz
 sudo tar xzf roundcubemail-1.5.1-complete.tar.gz
@@ -180,12 +183,12 @@ create database roundcube;
 create user roundcube@localhost identified by 'roundcube123';
 grant all on roundcube.* to roundcube@localhost;
 flush privileges;
-
+netstat -ltupen | grep dovecot
 ####------------------------###------------------------------######
 ############УСТАНОВКА почты№№№№№№№№№№№№№№№№№№№№№№
 sudo nano /etc/hosts
-3.13.131.152 mail.example.com mail
-3.13.131.152 mail.example.net mail
+#3.13.131.152 mail.example.com mail
+# 3.13.131.152 mail.example.net mail
 sudo certbot certonly --standalone
 sudo apt-get update && sudo apt-get upgrade
 sudo dpkg-reconfigure postfix

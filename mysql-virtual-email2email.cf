@@ -1,6 +1,6 @@
 # /etc/postfix/mysql-virtual-email2email.cf
-user = mailuser
-password = password
+user = postfix
+password = postfix123
 hosts = 127.0.0.1
-dbname = mailserver
+dbname = postfix
 query = SELECT email FROM virtual_users WHERE email='%s'
