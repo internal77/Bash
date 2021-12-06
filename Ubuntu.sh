@@ -152,8 +152,19 @@ netstat -tnulp | grep pure-ftpd
 #machine sitename1 login ftpuser1 password ftppassword1
 
 #-----------------POCTFIX-----------------------------------#
+#Установка Postfixadmin
+#далее база create database mail;
 sudo apt update
 sudo apt install postfix mailutils
+MySQL
+create database postfix;
+CREATE USER 'postfixadmin'@'localhost' IDENTIFIED BY "postfixadmin123";
+GRANT ALL ON postfix.* TO 'postfixadmin'@'localhost';
+FLUSH PRIVILEGES;
+INSERT INTO `admin` VALUES ('postfixadmin@localhost','postfixadmin123',1);
+mkdir /etc/postfix/sql
+cd /etc/postfix/sql
+
 systemctl restart php8.0-fpm
 apt-get install php-mysql php-mbstring php-imap
 wget https://sourceforge.net/projects/postfixadmin/files/latest/download -O postfixadmin.tar.gz
@@ -168,7 +179,6 @@ quit
 nano /var/www/postfixadmin/config.local.php # -
 sudo mkdir /var/log/postfixadmin
 http://wordpress.example.com/mailadmin/login.php
-$CONF['setup_password'] = '$2y$10$THqtAW0itf/WN2aRarPftOmIiVDpa3XwcDYJHvvERLKZOjniAUAp.';
 postfixadmin@example.com
 postfix123
 iptables -I INPUT 1 -p tcp --match multiport --dports 25,465,587 -j ACCEPT
@@ -178,12 +188,8 @@ sudo wget https://github.com/roundcube/roundcubemail/releases/download/1.5.1/rou
 sudo tar xzf roundcubemail-1.5.1-complete.tar.gz
 sudo cp -r roundcubemail-1.5.1 /var/www/roundcube
 sudo chown -R php-fpm.php-fpm /var/www/roundcube/
-MySQL
-create database roundcube;
-create user roundcube@localhost identified by 'roundcube123';
-grant all on roundcube.* to roundcube@localhost;
-flush privileges;
 netstat -ltupen | grep dovecot
+postconf -d | grep inet_protocols
 ####------------------------###------------------------------######
 ############УСТАНОВКА почты№№№№№№№№№№№№№№№№№№№№№№
 sudo nano /etc/hosts
@@ -194,7 +200,7 @@ sudo apt-get update && sudo apt-get upgrade
 sudo dpkg-reconfigure postfix
 sudo apt-get install postfix postfix-mysql dovecot-core dovecot-imapd dovecot-pop3d dovecot-lmtpd dovecot-mysql mysql-server
 sudo systemctl enable postfix dovecot
-sudo nano /etc/dovecot/dovecot.conf > !include conf.d/*.conf protocols = imap lmtp
+sudo nano /etc/dovecot/dovecot.conf > !include conf.d/*.conf protocols = imap lmtp pop3
 sudo nano /etc/dovecot/conf.d/10-master.conf
 netstat -l -p | grep lmtp
 sudo nano /etc/postfix/main.cf
@@ -208,53 +214,6 @@ sudo nano /etc/example.com - данные для почтового ящика �
 sudo nano /etc/example.net - данные для почтового ящика в домене example.net
 sudo mysql
 #----------------------creat database-------------------------#
-CREATE DATABASE mailserver;
-CREATE USER 'mailuser'@'localhost' IDENTIFIED BY 'password';
-GRANT SELECT ON mailserver.* TO 'mailuser'@'localhost';
-FLUSH PRIVILEGES;
-USE mailserver;
-
-CREATE TABLE `virtual_domains` (
-  `id` int(11) NOT NULL auto_increment,
-  `name` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE `virtual_users` (
-  `id` int(11) NOT NULL auto_increment,
-  `domain_id` int(11) NOT NULL,
-  `password` varchar(106) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`),
-  FOREIGN KEY (domain_id) REFERENCES virtual_domains(id) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE `virtual_aliases` (
-  `id` int(11) NOT NULL auto_increment,
-  `domain_id` int(11) NOT NULL,
-  `source` varchar(100) NOT NULL,
-  `destination` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`),
-  FOREIGN KEY (domain_id) REFERENCES virtual_domains(id) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-#-------------example.com----------------------#
-INSERT INTO mailserver.virtual_domains (name) VALUES ('example.com');
-SELECT * FROM mailserver.virtual_domains;
-# sudo doveadm pw -s SHA512-CRYPT -p "password" -r 5000 - шифрование пароля
-INSERT INTO mailserver.virtual_users (domain_id, password , email) VALUES ('1', 'password', 'user@example.com');
-SELECT * FROM mailserver.virtual_users;
-#-------------example.com-alias---------------------#
-INSERT INTO mailserver.virtual_aliases (domain_id, source, destination) VALUES ('1', 'alias@example.com', 'user@example.com');
-SELECT * FROM mailserver.virtual_aliases;
-#-------------example.net----------------------#
-INSERT INTO mailserver.virtual_domains (name) VALUES ('example.net');
-SELECT * FROM mailserver.virtual_domains;
-# sudo doveadm pw -s SHA512-CRYPT -p "password" -r 5000 - шифрование пароля
-INSERT INTO mailserver.virtual_users (domain_id, password , email) VALUES ('2', 'password', 'user@example.net');
-SELECT * FROM mailserver.virtual_users;
-#-------------example.net-alias---------------------#
-INSERT INTO mailserver.virtual_aliases (domain_id, source, destination) VALUES ('2', 'alias@example.net', 'user@example.net');
 
 #--------------------------setting POSTFIX main.cnf----------------------#
 sudo cp /etc/postfix/main.cf /etc/postfix/main.cf.orig
@@ -294,4 +253,4 @@ sudo chown -R vmail:dovecot /etc/dovecot
 sudo nano /etc/dovecot/conf.d/10-master.conf
 sudo nano /etc/dovecot/conf.d/10-ssl.conf
 sudo systemctl restart dovecot
-echo "Email body text" | sudo mail -s "Email subject line" sumyagel@gmail.com -aFrom:user@example.com - # тестовое письмо
+echo "Email body text" | sudo mail -s "Email subject line" sumyagel@gmail.com -aFrom:first@example.com - # тестовое письмо

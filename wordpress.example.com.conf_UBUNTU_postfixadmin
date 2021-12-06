@@ -25,7 +25,7 @@ listen  80;
     }
 
     location /webmail {
-            alias /var/www/roundcube/installer;
+            alias /var/www/roundcube;
 
             location ~ \.php$ {
 
