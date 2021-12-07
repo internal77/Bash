@@ -31,7 +31,8 @@ sleep 1
 echo Wait PLS! CLEAR TEMP FILES!!!!
 rm /home/centos/wp.sql dp.sql
 echo TEMP files delete comlete!!!!
-find /backup/mysql/* -mtime +30 -exec rm -rf {} \;
+find /backup/mysql/`date +%d-%m-%Y` -mtime +30 -exec rm -rf {} \;
+# find /backup/mysql/ -maxdepth 1 -type -d -mtime +30 -exec rm -rf {} \;
 exit 0
 # crontab -e - создание задания
 # crontab -l > /path/to/file
