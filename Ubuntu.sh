@@ -217,7 +217,7 @@ sudo mysql
 nmap -v -p25,110,143,465,587,993,995 127.0.0.1
 netstat -lnpvut
 ss -lntp | sed -r 's/\t/ /g'
-
+# telnet test https://habr.com/ru/company/truevds/blog/262819/
 #--------------------------setting POSTFIX main.cnf----------------------#
 sudo cp /etc/postfix/main.cf /etc/postfix/main.cf.orig
 sudo nano /etc/postfix/main.cf
