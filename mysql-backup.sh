@@ -37,3 +37,4 @@ exit 0
 # crontab -e - создание задания
 # crontab -l > /path/to/file
 # crontab -u user -l > /path/to/file
+# crontab -l
