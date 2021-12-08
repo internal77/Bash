@@ -111,9 +111,13 @@ apt-get install pure-ftpd -y
 # systemctl enable pure-ftpd
 # systemctl start pure-ftpd
 cd /etc/pure-ftpd
-echo “yes” > /etc/pure-ftpd/conf/NoAnonymous
-echo ‘/etc/pure-ftpd/pureftpd.pdb’ > PureDB
+sudo echo 'no' > PAMAuthentication
+sudo echo 'no' > UnixAuthentication
+sudo echo '/etc/pure-ftpd/pureftpd.pdb' > PureDB
+sudo ln -s  /etc/pure-ftpd/conf/PureDB /etc/pure-ftpd/auth/50pure
+echo 'yes' > /etc/pure-ftpd/conf/NoAnonymous
 echo "50000 50300" > /etc/pure-ftpd/conf/PassivePortRange
+systemctl restart pure-ftpd
 ftp -p -d 10.112.2.125
 netstat -tnulp | grep pure-ftpd
 # ПОЛЬЗОВАТЕЛЬ WORDPRESS---------------------------
