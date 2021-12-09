@@ -190,6 +190,9 @@ sudo chmod -R g+w /var/www/wordpress.example.com/wp-content/uploads
 sudo chown php-fpm:php-fpm /var/www/wordpress.example.com/wp-content/uploads -R
 # sudo pure-pw useradd wordpress -u php-fpm -g php-fpm -d /var/www/wordpress.example.com/wp-content/uploads -m
 sudo pure-pw useradd wordpress -u php-fpm -g php-fpm -d /var/www/wordpress.example.com -m
+# sudo pure-pw useradd ftpuser -u php-fpm -g php-fpm -d /backup/duplicity -m - для бекапа
+# sudo chown php-fpm:php-fpm /backup/duplicity
+# sudo chmod -R g+w /backup/duplicity
 sudo pure-pw mkdb
 sudo systemctl restart pure-ftpd
 sudo pure-pw show wordpress
