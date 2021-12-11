@@ -32,3 +32,7 @@ smtps     inet  n       -       -       -       -       smtpd
   -o smtpd_sasl_path=private/auth
   -o smtpd_client_restrictions=permit_sasl_authenticated,reject
   -o milter_macro_daemon_name=ORIGINATING
+
+
+  dovecot   unix  -  n  n  -  -  pipe
+    flags=DRhu user=vmail:vmail argv=/usr/lib/dovecot/deliver -d ${recipient}

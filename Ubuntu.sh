@@ -158,6 +158,7 @@ netstat -tnulp | grep pure-ftpd
 #-----------------POCTFIX-----------------------------------#
 # https://codeby.net/threads/kak-ustanovit-pochtovyj-server-v-ubuntu-ili-debian.70059/
 # https://codeby.net/blogs/kak-obezopasit-soedinenie-s-pochtovym-serverom-ispolzovanie-shifrovanija-dlja-svjazi-s-pochtovym-serverom/
+# https://serveradmin.ru/nastroyka-postfix-dovecot-centos-7/#_postfix
 #Установка Postfixadmin
 #далее база create database mail;
 sudo apt update
