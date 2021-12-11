@@ -156,6 +156,8 @@ netstat -tnulp | grep pure-ftpd
 #machine sitename1 login ftpuser1 password ftppassword1
 
 #-----------------POCTFIX-----------------------------------#
+# https://codeby.net/threads/kak-ustanovit-pochtovyj-server-v-ubuntu-ili-debian.70059/
+# https://codeby.net/blogs/kak-obezopasit-soedinenie-s-pochtovym-serverom-ispolzovanie-shifrovanija-dlja-svjazi-s-pochtovym-serverom/
 #Установка Postfixadmin
 #далее база create database mail;
 sudo apt update
