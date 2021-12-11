@@ -1,6 +1,0 @@
-# /etc/postfix/mysql-virtual-mailbox-maps.cf
-user = postfix
-password = postfix123
-hosts = 127.0.0.1
-dbname = postfix
-query = SELECT 1 FROM virtual_users WHERE email='%s'

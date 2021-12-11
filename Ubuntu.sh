@@ -139,22 +139,6 @@ netstat -tnulp | grep pure-ftpd
 # sudo pure-pw passwd - смена пароля
 # sudo pure-ftpwho - простмотр активности
 
-# ПОЛЬЗОВАТЕЛЬ DRUPAL---------------------------
-#sudo chown -R :apache /var/www/drupal.example.com/sites/default/files
-#sudo chmod -R g+w /var/www/drupal.example.com/sites/default/files
-# sudo gpasswd -a drupal ftpusers1
-#sudo chown apache:apache /var/www/drupal.example.com/sites/default/files -R
-#sudo pure-pw useradd drupal -u apache -g apache -d /var/www/drupal.example.com/sites/default/files -m
-# sudo pure-pw useradd drupal -u apache -g apache -d /var/www/drupal.example.com -m
-#sudo pure-pw mkdb
-#sudo systemctl restart pure-ftpd
-#sudo pure-pw show drupal
-#more /var/log/messages | grep pure-ftpd   -  посмотреть ЛОГИ!!!!!
-# pure-pw userdel -удаление пользователя
-# Settings ftp /root/.netrc
-#nano /root/.netrc
-#machine sitename1 login ftpuser1 password ftppassword1
-
 #-----------------POCTFIX-----------------------------------#
 # https://codeby.net/threads/kak-ustanovit-pochtovyj-server-v-ubuntu-ili-debian.70059/
 # https://codeby.net/blogs/kak-obezopasit-soedinenie-s-pochtovym-serverom-ispolzovanie-shifrovanija-dlja-svjazi-s-pochtovym-serverom/
