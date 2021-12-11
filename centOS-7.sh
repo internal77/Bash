@@ -181,7 +181,7 @@ sudo nano /etc/pure-ftpd/pure-ftpd.conf > PassivePortRange 45000 50000 > PureDB 
 ftp -p -d 10.112.2.136
 netstat -tnulp | grep pure-ftpd
 sudo pure-pw list
-# ПОЛЬЗОВАТЕЛЬ WORDPRESS---------------------------
+# -----------------ПОЛЬЗОВАТЕЛЬ WORDPRESS---------------------------
 # sudo groupadd ftpusers
 sudo chown -R :php-fpm /var/www/wordpress.example.com/wp-content/uploads
 sudo chmod -R g+w /var/www/wordpress.example.com/wp-content/uploads
@@ -190,12 +190,21 @@ sudo chmod -R g+w /var/www/wordpress.example.com/wp-content/uploads
 sudo chown php-fpm:php-fpm /var/www/wordpress.example.com/wp-content/uploads -R
 # sudo pure-pw useradd wordpress -u php-fpm -g php-fpm -d /var/www/wordpress.example.com/wp-content/uploads -m
 sudo pure-pw useradd wordpress -u php-fpm -g php-fpm -d /var/www/wordpress.example.com -m
-# sudo pure-pw useradd ftpuser -u php-fpm -g php-fpm -d /backup/duplicity -m - для бекапа
-# sudo chown php-fpm:php-fpm /backup/duplicity
-# sudo chmod -R g+w /backup/duplicity
 sudo pure-pw mkdb
 sudo systemctl restart pure-ftpd
 sudo pure-pw show wordpress
+#-------------------FTPUSER-------------------------------------------#
+sudo pure-pw useradd ftpuser -u php-fpm -g php-fpm -d /backup/duplicity -m - для бекапа
+# sudo pure-pw useradd
+sudo pure-pw mkdb
+sudo user add ftpuser
+sudo usermod -aG php-fpm ftpuser
+sudo chown php-fpm:php-fpm /backup/duplicity
+sudo chmod -R g+w /backup/duplicity
+sudo chown ftpuser:php-fpm /backup/duplicity
+sudo chmod -R g+w /backup/duplicity
+sudo pure-pw mkdb
+
 # sudo pure-pw passwd - смена пароля
 # sudo pure-ftpwho - простмотр активности
 # pure-pw userdel -удаление пользователя
