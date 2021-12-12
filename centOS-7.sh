@@ -179,6 +179,7 @@ sudo syatemctl enable pure-ftpd
 cd /etc/pure-ftpd
 sudo nano /etc/pure-ftpd/pure-ftpd.conf > PassivePortRange 45000 50000 > PureDB /etc/pure-ftpd/pureftpd.pdb
 ftp -p -d 10.112.2.136
+ftp -p -v -d 10.112.2.136
 netstat -tnulp | grep pure-ftpd
 sudo pure-pw list
 # -----------------ПОЛЬЗОВАТЕЛЬ WORDPRESS---------------------------
