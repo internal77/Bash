@@ -73,7 +73,7 @@ sudo yum -y install nginx
 # yum search php80 php80-php
 # yum info php80 php80-php
 # delete old version php - yum -y remove php*
-https://computingforgeeks.com/how-to-install-php-8-on-centos-linux/
+# https://computingforgeeks.com/how-to-install-php-8-on-centos-linux/
 sudo yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 sudo yum -y install https://rpms.remirepo.net/enterprise/remi-release-7.rpm
 sudo yum -y install yum-utils
@@ -226,3 +226,16 @@ more /var/log/messages | grep pure-ftpd   -  посмотреть ЛОГИ!!!!!
 # Settings ftp /root/.netrc
 nano /root/.netrc
 #machine sitename1 login ftpuser1 password ftppassword1
+#-------------DUPLICITY------------------------------#
+wget https://files.pythonhosted.org/packages/23/01/c8fabb7811feb13d762d976155f3dba912f0dab93f033c655f3180148574/duplicity-0.8.21.post7.tar.gz
+tar xzf duplicity-0.8.21.post7.tar.gz
+cd duplicity-0.8.21.post7
+python3 setup.py install
+wget https://files.pythonhosted.org/packages/28/e4/2888d41cdbd405828ccdb9a8536c5919939c2f4c6ab9b2ba63e9bd2570d5/fasteners-0.16.3.tar.gz
+tar xzf fasteners-0.16.3.tar.gz
+cd fasteners-0.16.3
+python3 setup.py install
+wget https://files.pythonhosted.org/packages/45/0b/38b06fd9b92dc2b68d58b75f900e97884c45bedd2ff83203d933cf5851c9/future-0.18.2.tar.gz
+tar xzf future-0.18.2.tar.gz
+cd future-0.18.2
+python3 setup.py install
