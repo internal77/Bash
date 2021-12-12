@@ -205,7 +205,7 @@ sudo chmod -R g+w /backup/duplicity
 sudo chown ftpuser:php-fpm /backup/duplicity
 sudo chmod -R g+w /backup/duplicity
 sudo pure-pw mkdb
-
+# https://code.launchpad.net/duplicity/0.8-series/0.8.20/+download/duplicity-0.8.20.tar.gz
 # sudo pure-pw passwd - смена пароля
 # sudo pure-ftpwho - простмотр активности
 # pure-pw userdel -удаление пользователя
