@@ -20,7 +20,7 @@ tar xzf git-2.34.1.tar.gz
 cd git-2.34.1
 make prefix=/usr/local/sbin all
 make prefix=/usr/local/sbin install
-echo "export PATH=$PATH:/usr/local/sbin" >> /etc/bashrc
+echo "export PATH=$PATH:/usr/local/sbin/bin" >> /etc/bashrc
 source /etc/bashrc
 git --version
 # Disk add
@@ -38,13 +38,13 @@ apt install net-tools
 sudo apt install curl gnupg2 ca-certificates lsb-release ubuntu-archive-keyring
 curl https://nginx.org/keys/nginx_signing.key | gpg --dearmor \
     | sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
+
 gpg --dry-run --quiet --import --import-options import-show /usr/share/keyrings/nginx-archive-keyring.gpg
+
 echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
 http://nginx.org/packages/ubuntu `lsb_release -cs` nginx" \
     | sudo tee /etc/apt/sources.list.d/nginx.list
-    echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
-    http://nginx.org/packages/mainline/ubuntu `lsb_release -cs` nginx" \
-        | sudo tee /etc/apt/sources.list.d/nginx.list
+
 sudo apt update
 sudo apt install nginx
 sudo ln -s /etc/nginx/sites-available/wordpress.example.com.conf /etc/nginx/sites-enabled/
@@ -60,6 +60,10 @@ sudo apt install ./mysql-apt-config_0.8.20-1_all.deb
 sudo sed -i 's/xenial/focal/g' /etc/apt/sources.list.d/mysql.list
 sudo apt update
 sudo apt install mysql-server
+# systemctl enable mysql
+# systemctl start mysql
+# systemctl stop mysql
+# создать файл /root/.my.cnf > chmod 600
 #3-----------------------или-----------------------#
 wget –c https://dev.mysql.com/get/mysql-apt-config_0.8.20-1_all.deb
 sudo apt-get update
@@ -91,7 +95,7 @@ sudo apt install software-properties-common
 sudo add-apt-repository ppa:ondrej/php
 sudo apt update
 sudo apt install php8.0 libapache2-mod-php8.0
-sudo apt install php8.0 php8.0-cli php8.0-fpm  php8.0-pdo php8.0-mysql php8.0-zip php8.0-gd php8.0-mbstring php8.0-curl php8.0-xml php-pear php8.0-bcmath
+sudo apt install php8.0 php8.0-cli php8.0-fpm php8.0-intl php8.0-imap php8.0-pspell php8.0-pdo php8.0-mysql php8.0-zip php8.0-gd php8.0-mbstring php8.0-curl php8.0-xml php-pear php8.0-bcmath
 mkdir -p /var/lib/php/sessions
 chown -R php-fpm:php-fpm /var/lib/php/sessions
 chmod -R 755 /var/lib/php/sessions

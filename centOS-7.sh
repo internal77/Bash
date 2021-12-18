@@ -24,7 +24,7 @@ cat /root/tasks/1/filetopackagename
 # Git
 sudo yum  update
 sudo yum -y install make
-sudo yum -y install -y build-essential libssl-dev libcurl4-gnutls-dev perl-devel openssl-devel curl-devel expat-devel gettext-devel openssl-devel libexpat1-dev gettext unzip wget gcc
+sudo yum install  build-essential libssl-dev libcurl4-gnutls-dev perl-devel openssl-devel curl-devel expat-devel  openssl-devel libexpat1-dev  unzip wget gcc
 cd /usr/local/src
 wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.34.1.tar.gz
 tar xzf git-2.34.1.tar.gz
@@ -116,9 +116,9 @@ yum install -y mysql-community-server
 # Настроить nginx как обратный прокси-сервер
 #nginx как обратный прокси-сервер.
 /etc/nginx/sites-enabled/ ??
-sudo ln -s /etc/nginx/sites-available/drupal.conf /etc/nginx/sites-enabled/drupal.conf
-sudo ln -s /etc/nginx/sites-available/wordpress.conf /etc/nginx/sites-enabled/wordpress.conf
-sudo ln -s /etc/nginx/sites-available/ /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/drupal.conf /etc/nginx/sites-enabled
+sudo ln -s /etc/nginx/sites-available/wordpress.conf /etc/nginx/sites-enabled
+# sudo ln -s /etc/nginx/sites-available/ /etc/nginx/sites-enabled/
 # ----------------Установка DRUPAL------------------------#
 cd /
 cd /tmp
@@ -141,7 +141,7 @@ wget http://wordpress.org/latest.zip
 unzip -q latest.zip -d /var/www/wordpress.example.com
 cd /var/www/wordpress.example.com/wordpress
 mv  -v /var/www/wordpress.example.com/wordpress/* /var/www/wordpress.example.com/
-# cp -a /var/www/wordpress.example.com 
+# cp -a /var/www/wordpress.example.com
 mv wp-config-sample.php wp-config.php
 nano wp-config.php > # данные базы данных и пользователя
 mkdir /var/www/wordpress.example.com/wp-content/uploads
