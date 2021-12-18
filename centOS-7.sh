@@ -9,8 +9,8 @@ sudo yum -y install yum-utils
 sudo yum -y install epel-release
 sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-$(rpm -E '%{rhel}').noarch.rpm
 sudo yum repolist
-sudo yum -y install php
-sudo yum-config-manager --enable remi-php72
+#sudo yum -y install php
+#sudo yum-config-manager --enable remi-php72
 rpm -ivh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
 sudo yum-config-manager --enable remi
 sudo yum --enablerepo=remi --show-duplicates list all redis
@@ -22,7 +22,7 @@ cat /root/tasks/1/packagefileslist
 rpm -qf /etc/locale.conf > /root/tasks/1/filetopackagename
 cat /root/tasks/1/filetopackagename
 # Git
-sudo yum -y update
+sudo yum  update
 sudo yum -y install make
 sudo yum -y install -y build-essential libssl-dev libcurl4-gnutls-dev perl-devel openssl-devel curl-devel expat-devel gettext-devel openssl-devel libexpat1-dev gettext unzip wget gcc
 cd /usr/local/src
@@ -43,16 +43,18 @@ git --version
 # sudo nano /etc/fstab swap add sudo nano /etc/fstab
 # symlink ln -s /data/mysql /var/lib/mysql    ln -s /data/www /var/www
 # created swap file - sudo fallocate -l 1G /swap(sudo dd if=/dev/zero of=/swap bs=1MiB count=1000) - sudo chmod 600 /swap - sudo mkswap /swap - sudo swapon /swap - sudo nano /etc/fstab > /swap none swap defaults 0 0
+# swapon --show
+# free- h
 #-------------------------------------------------------------------------------------#
-# install Apachecd /var/www
-sudo yum -y update httpd
+# ----------------install Apachecd /var/www--------------------
+sudo yum update
 sudo yum -y install httpd
 sudo systemctl start httpd
 systemctl enable httpd
 sudo systemctl status httpd
 # /etc/httpd/conf/httpd.conf - >> Listen 8080
 # systemctl restart httpd
-# install nginx
+# ------------------install nginx---------------------------#
 sudo nano /etc/yum.repos.d/nginx.repo
 [nginx-stable]
 name=nginx stable repo
@@ -79,10 +81,13 @@ sudo yum -y install https://rpms.remirepo.net/enterprise/remi-release-7.rpm
 sudo yum -y install yum-utils
 sudo yum-config-manager --disable 'remi-php*'
 sudo yum-config-manager --enable remi-safe
-sudo yum -y install php80
+sudo yum  install php80
 yum install php80-php-fpm
-yum install php80 php80-php
-# install latest mysql Oracle latest mysql (из официального Oracle репозитория MySQL)
+yum install  php80-php-common php80-php-pecl-mysql php80-php-pecl-zip php80-php-mysqlnd php80-php-gb php80-php-intl php80-php-imap php80-php-ldap php80-php-imap php80-php-mbstring php80-php-opcache php80-php-pdo php80-php-sodium php80-php-xml
+#systemctl start php80-php-fpm
+#systemctl enable php80-php-fpm
+#systemctl status php80-php-fpm
+# ---------------install latest mysql Oracle latest mysql (из официального Oracle репозитория MySQL)
 wget https://dev.mysql.com/get/mysql80-community-release-el7-4.noarch.rpm
 rpm -ivh mysql80-community-release-el7-4.noarch.rpm
 yum install -y mysql-community-server

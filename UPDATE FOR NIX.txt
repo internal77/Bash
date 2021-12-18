@@ -1,0 +1,170 @@
+UPDATE 14.11.21 (Sunday)
+1. (Задание-1 CentOS) Отключил SELinux
+2. (Задание-1 CentOS) Подключил репозитории epel и remi
+3. (Задание-1 CentOS) Установил redis версии 6.0
+4. (Задание-1 CentOS) Записал лог rpm по redis > /root/tasks/1/packagefileslist
+5. (Задание-1 CentOS) Записал лог rpm по /etc/locale.conf > /root/tasks/1/filetopackagename
+6. (Задание-1 CentOS) Собрал и установи git последнего стабильного релиза из исходников /usr/local/sbin
+7. (Задание-1 CentOS) Создан диск отформатирован, добавлен к системе
+8. (Задание-1 CentOS) Прописаны симлинки
+9. (Задание-1 CentOS) Создан и добавлен swap
+
+1. (Задание-1 Ubuntu) Установил Redis последней версии из официального PPA репозитория
+2. (Задание-1 Ubuntu) Записал лог dpkg по redis-server > /root/tasks/1/packagefileslist
+3. (Задание-1 Ubuntu) Записал лог dpkg по /etc/sysctl.conf >  /root/tasks/1/filetopackagename
+4. (Задание-1 Ubuntu) Собрал и установи git последнего стабильного релиза из исходников /usr/local/sbin
+5. (Задание-1 Ubuntu) Создан диск отформатирован, добавлен к системе
+6. (Задание-1 Ubuntu) Прописаны симлинки
+7. (Задание-1 Ubuntu) Создан и добавлен swap
+
+UPDATE 15.11.21 (Monday)
+1. (Задание-2 CentOS) Установлен nginx (из официального репозитория nginx для стабильных версий пакетов)
+2. (Задание-2 CentOS) Установлен apache (из оф. репозитория CentOS)
+3. (Задание-2 CentOS) Установлен php 8.0 из репозитория remi
+4. (Задание-2 CentOS) Установлена latest mysql (из официального Oracle репозитория MySQL)
+5. (Задание-2 CentOS) Запущен nginx
+6. (Задание-2 CentOS) Запущен apache
+
+
+UPDATE 16.11.21 (Tuesday)
+ПЕРЕУСТАНОВЛЕН UBUNTU!!!!!
+
+1. (Задание-1 Ubuntu) Установил Redis последней версии из официального PPA репозитория
+2. (Задание-1 Ubuntu) Записал лог dpkg по redis-server > /root/tasks/1/packagefileslist
+3. (Задание-1 Ubuntu) Записал лог dpkg по /etc/sysctl.conf >  /root/tasks/1/filetopackagename
+4. (Задание-1 Ubuntu) Собрал и установи git последнего стабильного релиза из исходников /usr/local/sbin
+5. (Задание-1 Ubuntu) Создан диск отформатирован, добавлен к системе
+6. (Задание-1 Ubuntu) Прописаны симлинки
+7. (Задание-1 Ubuntu) Создан и добавлен swap
+
+
+1. (Задание-2 CentOS) Прописаны конфиги для сайтов
+2. (Задание-2 CentOS) Сделаны symlink
+3. (Задание-2 CentOS) Написаны конфиги для виртуальных хостов nginx, apache
+4. (Задание-2 CentOS) Созданы все директории и связаны для сайтов
+5. (Задание-2 CentOS) Запущен nginx - все конфиги размещены по директориям
+6. (Задание-2 CentOS) Запущен nginx - все конфиги размещены по директориям
+
+
+UPDATE 17.11.21 (Wednesday)
+ПЕРЕУСТАНОВЛЕН UBUNTU!!!!!с - не проходит проверка git !!!!!!!!!!
+1. (Задание-1 Ubuntu) Установил Redis последней версии из официального PPA репозитория
+2. (Задание-1 Ubuntu) Записал лог dpkg по redis-server > /root/tasks/1/packagefileslist
+3. (Задание-1 Ubuntu) Записал лог dpkg по /etc/sysctl.conf >  /root/tasks/1/filetopackagename
+4. (Задание-1 Ubuntu) Собрал и установи git последнего стабильного релиза из исходников /usr/local/sbin
+5. (Задание-1 Ubuntu) Создан диск отформатирован, добавлен к системе
+6. (Задание-1 Ubuntu) Прописаны симлинки
+7. (Задание-1 Ubuntu) Создан и добавлен swap
+
+1. (Задание-2 CentOS) Прописаны конфиги для сайтов - nginx proxy for apache
+2. (Задание-2 CentOS) Сделаны symlink
+
+UPDATE 18.11.21 (Thursday)
+1. ПЕРЕУСТАНОВЛЕН UBUNTU!!!!! - не проходит проверка git !!!!!!!!!!
+   Проблема с проверкой git решена с помощью DEvOps
+
+1. (Задание-2 CentOS) конфиги сайтов перенесены в парки по умолчанию conf.d
+2. (Задание-2 CentOS) переустановлена mysql, запущен, создан пароль
+
+3. (Задание-1 CentOS) отвалилась symlink /var/lib/mysql не является симлинком к /data/mysql
+
+
+UPDATE 19.11.21 (Friday)
+1.(Задание-1 CentOS) Восстановил symlink /var/lib/mysql к /data/mysql
+2.(Задание-2 CentOS) Dосстановлена связь URL http://wordpress.example.com/
+3.(Задание-2 CentOS) Пользователь nginx восстановлен
+4.(Задание-2 CentOS) MySQL server прописан bind-address - 127.0.0.1
+5.(Задание-2 CentOS) Восстановлена связь URL http://drupal.example.com/
+6.(Задание-2 CentOS) Пароль по умолчанию для MySQL прописан в my.cnf
+
+
+UPDATE 22.11.21 (Monday)
+1.(Задание-3 CentOS) Drupal развернут
+2.(Задание-3 CentOS) Wordpress резвернут
+3.(Задание-3 CentOS) Установлен (PHP-FPM) переустановлен на версию 8.0
+4.(Задание-3 CentOS) Переделаны конфиги nginx
+5.(Задание-3 CentOS) Установлен пакет PURE-FTPD
+6.(Задание-3 CentOS) Созданы пользователи и виртуальные пользователи для ftp
+7.(Задание-3 CentOS) Прописан файл netrc
+
+
+UPDATE 23.11.21 (Tuesday)
+1.(Задание-3 CentOS) Запущен php80-php-fpm на 9000
+2.(Задание-3 CentOS) Восстановлен доступ к wordpress.example.com (index.html)
+3.(Задание-3 CentOS) Пытался разобраться в правах пользователей на папки сайтов
+4.(Задание-3 CentOS) Тестировал ftp - не логинится
+
+UPDATE 24.11.21 (Wednesday)
+1.(Задание-3 CentOS) Тестировал ftp - работает указан PASSIVE mode
+2.(Задание-3 CentOS) Создан файл .netrc - пописаны логини и ip
+
+1. (Задание-4 Ubuntu) Установлен nginx (из официального репозитория nginx для стабильных версий пакетов)
+2. (Задание-4 Ubuntu) Установлен mysql
+3. (Задание-4 Ubuntu) Установлен php 8.0 
+4. (Задание-4 Ubuntu) Установлен php8-fpm
+5. (Задание-4 Ubuntu) Создан пользователь php-fpm
+6. (Задание-4 Ubuntu) Запущен nginx
+7. (Задание-4 Ubuntu) Запущен php8-fpm
+8. (Задание-4 Ubuntu) Прописаны все конфиги и разложены по соответсвующим директориям
+
+UPDATE 25.11.21 (Thursday)
+1.(Задание-3 CentOS) Тестировал ftp - работает указан PASSIVE mode -!!!!
+2.(Задание-3 CentOS) Создан файл .netrc - пописаны логини и ip - переделан файл по стандартам из задания!!!!
+3.(Задание-3 CentOS) Заданы правильные права для пользователей для сайта Drupal
+4.(Задание-3 CentOS) Заданы правильные права для пользователей для сайта Wordpress
+
+UPDATE 29.11.21 (Monday)
+1.(Задание-4 Ubuntu) Тестировал ftp - работает указан PASSIVE mode -!!!!
+2.(Задание-4 Ubuntu) Восстановлен доступ к сайту wordpress (index.html - удален)
+
+1.(Задание-3 CentOS) Восстановлен доступ к сайту wordpress (index.html - удален)
+
+
+
+UPDATE 30.11.21 (Tuesday)
+1.(Задание-5 Ubuntu) Установка пакетов для почтового сервера
+2.(Задание-5 Ubuntu) Изучение конфигурационных файлов postfix, dovecot
+3.(Задание-5 Ubuntu) Создание базы данных и всех таблиц для виртуальных доменов и пользователей
+
+UPDATE 01.12.21 (Wednesday)
+1.(Задание-5 Ubuntu) Прописаны настройки в конфигурационных файлах dovecot, postfix
+
+UPDATE 05.12.21 (Sunday)
+1. (Задание 5 -Ubuntu) Переустановлены Postfix, Postfixadmin, Roundcobe, Dovecot 3 раза, по разным источникам - нет связи с пользователями email
+
+UPDATE 06.12.21 (Monday)
+1. (Задание 6 - CentOs) Написан скрипт бекапа mysql-backup.sh - протестирован и добавлен в crontab
+
+
+UPDATE 07.12.21 (Tuesday)
+1. (Задание 6 - CentOs) Написан конфиг скрипта бекапа duplicity-backup.sh > duplicity-backup.conf добавлен в crontab
+
+
+UPDATE 08.12.21 (Wednesday)
+1. (Задание 4 - Ubuntu) Решен вопрос по pure-ftpd, добавлен один симлинк и все заработало
+
+1. (Задание 6 - CentOs)  Исправлен duplicity-backup.conf добавлена функция сохранения двух копий
+
+UPDATE 08.12.21 (Thursday)
+1. (Задание 5 - Ubuntu) Исправлен путь к пакам пользователя в конфиге dovecot
+
+1. (Задание 6 - CentOs)  Исправлена команда duplicity-backup.sh > duplicity-backup.conf добавлен в crontab указано верно время 9.00
+2. (Задание 6 - CentOs) Исправлен параметр INCLICT в конфиге duplicity-backup.conf
+
+UPDATE 11.12.21 (Saturday)
+1. (Задание 6 - CentOs) Исправлены значения параметров в конфиге duplicity
+2. (Задание 6 - CentOs) Сделаны тестовые бекапы полный и инкрементный
+
+1. (Задание 5 - Ubuntu) Проверены настройки dovecot & postfix & smtp
+2. (Задание 5 - Ubuntu) Переполучены сертификаты tls, перезаписаны конфиги dovecot & postfix
+
+UPDATE 12.12.21 (Sunday)
+1. (Задание 6 -CentOs) Проверен скрипт бекапа разными свойствами, не копирует папки сайтов - вывод папки (они же симлинки) - установлена duplicity из исходников, обновлены библиотеки Python3. Папки в архив идут!!!!
+
+UPDATE 13.12.21 (Monday)
+1. (Задание 6 - CentOs) Удалена duplicity из gitlab и установлена из пакетов
+
+
+!!!!! КУРС ОКОНЧЕН!!!!!
+       
+
