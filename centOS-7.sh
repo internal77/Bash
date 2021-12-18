@@ -116,8 +116,10 @@ yum install -y mysql-community-server
 # Настроить nginx как обратный прокси-сервер
 #nginx как обратный прокси-сервер.
 /etc/nginx/sites-enabled/ ??
+sudo ln -s /etc/nginx/sites-available/drupal.conf /etc/nginx/sites-enabled/drupal.conf
+sudo ln -s /etc/nginx/sites-available/wordpress.conf /etc/nginx/sites-enabled/wordpress.conf
 sudo ln -s /etc/nginx/sites-available/ /etc/nginx/sites-enabled/
-# Установка DRUPAL
+# ----------------Установка DRUPAL------------------------#
 cd /
 cd /tmp
 wget https://www.drupal.org/download-latest/tar.gz -O drupal.tar.gz
@@ -127,18 +129,19 @@ cd /var/www/drupal.example.com/drupal-*
 sudo mv drupal-*/  /var/www/drupal.example.com
 cd ..
 mkdir sites/default/files
-cp ./sites/default/default.settings.php  ./sites/default/settings.php
+cp /sites/default/default.settings.php  /sites/default/settings.php
 chown -R apache:apache settings.php
 chown -R :apache /var/www/drupal.example.com/sites/default/files
-
-# Установка WORDPRESS
+chown -R apache:apache /var/www/drupal.example.com
+chmod -R 775 /var/www/drupal.example.com
+# -------------Установка WORDPRESS----------------------
 cd /
 cd /tmp
 wget http://wordpress.org/latest.zip
 unzip -q latest.zip -d /var/www/wordpress.example.com
 cd /var/www/wordpress.example.com/wordpress
 mv  -v /var/www/wordpress.example.com/wordpress/* /var/www/wordpress.example.com/
-# cp -a /var/www/wordpress.example.command
+# cp -a /var/www/wordpress.example.com 
 mv wp-config-sample.php wp-config.php
 nano wp-config.php > # данные базы данных и пользователя
 mkdir /var/www/wordpress.example.com/wp-content/uploads
