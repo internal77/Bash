@@ -18,6 +18,6 @@ yum list updates
 
 # yum list installed
 
-yum list installed | grep php
+yum list installed | grep php80
 
 yum makecache

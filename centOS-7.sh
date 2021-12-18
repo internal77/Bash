@@ -92,14 +92,12 @@ wget https://dev.mysql.com/get/mysql80-community-release-el7-4.noarch.rpm
 rpm -ivh mysql80-community-release-el7-4.noarch.rpm
 yum install -y mysql-community-server
 # yum install -y mysql-workbench-community
-systemctl enable mysqld
-systemctl start mysqld
-systemctl enable php-fpm
-systemctl start php-fpm
-systemctl stop mysqld
+# systemctl enable mysqld
+# systemctl start mysqld
+# systemctl stop mysqld
 # создать файл /root/.my.cnf > chmod 600
 # sudo mysql_secure_installation
-# sudo grep 'temporary password' /var/log/mysqld.log - временный пароль # yFeli.WtG7i?
+# sudo grep 'temporary password' /var/log/mysqld.log - временный пароль # <r-Y6rt4tgql
 # mysql -u root -p
 # ALTER USER 'root'@'localhost' IDENTIFIED BY '6oWN.bzOIOIw!?'; - изменение пароля - 6oWN.bzOIOIw!?
 # CREATE DATABASE new_database;
@@ -116,10 +114,7 @@ systemctl stop mysqld
 # show databases;
 
 # Настроить nginx как обратный прокси-сервер
-#nginx как обратный прокси-сервер. Если я все верно понял то в
-# директории /etc/nginx/sites-available/ нужно создать файл
- # wordpress.example.com.conf настроить его, далее в директории
-#  httpd /etc/httpd/sites-available/ также создать конфиг wordpress.example.com.conf
+#nginx как обратный прокси-сервер.
 /etc/nginx/sites-enabled/ ??
 sudo ln -s /etc/nginx/sites-available/ /etc/nginx/sites-enabled/
 # Установка DRUPAL
@@ -164,7 +159,7 @@ nano /etc/opt/remi/php80/php-fpm.d/www.conf
 # > listen.owner = nginx
 # > listen.group = nginx
 ss -tapn
-nano /etc/nginx/conf.d/wordpress.example.com.conf > fastcgi_pass unix:/run/php-fpm.sock
+# nano /etc/nginx/conf.d/wordpress.example.com.conf > fastcgi_pass unix:/run/php-fpm.sock
 # systemctl start php-fpm
 systemctl start php80-php-fpm
 systemctl enable php80-php-fpm
