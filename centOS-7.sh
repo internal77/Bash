@@ -69,7 +69,8 @@ sudo yum -y install nginx
 # systemctl enable nginx
 # systemctl status nginx
 # /etc/nginx/conf.d/
-
+firewall-cmd --zone=public --add-port=80/tcp --permanent
+service firewalld restart
 #------------------------------------------------------------------#
 # php 8.0 repository remi
 # yum search php80 php80-php
