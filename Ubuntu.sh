@@ -122,8 +122,8 @@ sudo ln -s  /etc/pure-ftpd/conf/PureDB /etc/pure-ftpd/auth/50pure
 echo 'yes' > /etc/pure-ftpd/conf/NoAnonymous
 echo "50000 50300" > /etc/pure-ftpd/conf/PassivePortRange
 systemctl restart pure-ftpd
-ftp -p -d 10.112.2.125
-ftp -p -v -d 10.112.2.125
+ftp -p -d 94.228.118.45
+ftp -p -v -d 94.228.118.45
 netstat -tnulp | grep pure-ftpd
 # ПОЛЬЗОВАТЕЛЬ WORDPRESS---------------------------
 # sudo groupadd ftpusers
@@ -139,7 +139,7 @@ sudo pure-pw useradd wordpress -u php-fpm -g php-fpm -d /var/www/wordpress.examp
 sudo pure-pw mkdb
 sudo systemctl restart pure-ftpd
 sudo pure-pw show wordpress
-ftp -p -d 10.112.2.125
+ftp -p -d 94.228.118.45
 netstat -tnulp | grep pure-ftpd
 # sudo pure-pw passwd - смена пароля
 # sudo pure-ftpwho - простмотр активности
