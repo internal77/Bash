@@ -84,7 +84,7 @@ sudo yum-config-manager --disable 'remi-php*'
 sudo yum-config-manager --enable remi-safe
 sudo yum  install php80
 yum install php80-php-fpm
-yum install  php80-php-common php80-php-pecl-mysql php80-php-pecl-zip php80-php-mysqlnd php80-php-gb php80-php-intl php80-php-imap php80-php-ldap php80-php-imap php80-php-mbstring php80-php-opcache php80-php-pdo php80-php-sodium php80-php-xml
+yum install  php80-php-common php80-php-gd php80-php-pecl-mysql php80-php-pecl-zip php80-php-mysqlnd php80-php-gb php80-php-intl php80-php-imap php80-php-ldap php80-php-imap php80-php-mbstring php80-php-opcache php80-php-pdo php80-php-sodium php80-php-xml
 #systemctl start php80-php-fpm
 #systemctl enable php80-php-fpm
 #systemctl status php80-php-fpm
@@ -136,6 +136,7 @@ chown -R apache:apache settings.php
 chown -R :apache /var/www/drupal.example.com/sites/default/files
 chown -R apache:apache /var/www/drupal.example.com
 chmod -R 775 /var/www/drupal.example.com
+chmod -R 777 /var/www/drupal.example.com/sites/default/files/
 # -------------Установка WORDPRESS----------------------
 cd /
 cd /tmp
