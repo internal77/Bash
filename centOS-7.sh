@@ -55,7 +55,6 @@ sudo systemctl status httpd
 # /etc/httpd/conf/httpd.conf - >> Listen 8080
 # systemctl restart httpd
 # ------------------install nginx---------------------------#
-sudo nano /etc/yum.repos.d/nginx.repo
 [nginx-stable]
 name=nginx stable repo
 baseurl=http://nginx.org/packages/centos/$releasever/$basearch/
@@ -85,6 +84,8 @@ sudo yum-config-manager --enable remi-safe
 sudo yum  install php80
 yum install php80-php-fpm
 yum install  php80-php-common php80-php-gd php80-php-pecl-mysql php80-php-pecl-zip php80-php-mysqlnd php80-php-gb php80-php-intl php80-php-imap php80-php-ldap php80-php-imap php80-php-mbstring php80-php-opcache php80-php-pdo php80-php-sodium php80-php-xml
+adduser php-fpm
+nano /etc/opt/remi/php80/php-fpm.d/www.conf
 #systemctl start php80-php-fpm
 #systemctl enable php80-php-fpm
 #systemctl status php80-php-fpm
@@ -158,9 +159,9 @@ nginx -T | grep wordpress.example.com
 # cp -a /source/. /dest/
 # Настройка php & nginxcp
 # сохранить оригинал /etc/php-fpm.d/www.conf /etc/php-fpm.d/www.conf.original
-adduser php-fpm
+# adduser php-fpm
 # nano /etc/php-fpm.d/www.conf >
-nano /etc/opt/remi/php80/php-fpm.d/www.conf
+# ano /etc/opt/remi/php80/php-fpm.d/www.conf
 # > listen = /var/run/php-fpm/php-fpm.sock
 # > listen.mode = 0660
 # > listen.owner = nginx
@@ -168,8 +169,8 @@ nano /etc/opt/remi/php80/php-fpm.d/www.conf
 ss -tapn
 # nano /etc/nginx/conf.d/wordpress.example.com.conf > fastcgi_pass unix:/run/php-fpm.sock
 # systemctl start php-fpm
-systemctl start php80-php-fpm
-systemctl enable php80-php-fpm
+# systemctl start php80-php-fpm
+# systemctl enable php80-php-fpm
 # systemctl restart php-fpm
 # systemctl restart nginx
 mkdir -p /var/lib/php/session
