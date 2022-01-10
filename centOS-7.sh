@@ -99,7 +99,7 @@ yum install -y mysql-community-server
 # systemctl stop mysqld
 # создать файл /root/.my.cnf > chmod 600
 # sudo mysql_secure_installation
-# sudo grep 'temporary password' /var/log/mysqld.log - временный пароль # %T4gD+QkqYgJ
+# sudo grep 'temporary password' /var/log/mysqld.log - временный пароль # m*JLl9=pyVxf
 # mysql -u root -p
 # ALTER USER 'root'@'localhost' IDENTIFIED BY '6oWN.bzOIOIw!?'; - изменение пароля - 6oWN.bzOIOIw!?
 # CREATE DATABASE new_database;
