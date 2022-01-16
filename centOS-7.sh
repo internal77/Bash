@@ -44,7 +44,7 @@ git --version
 # symlink ln -s /data/mysql /var/lib/mysql    ln -s /data/www /var/www
 # created swap file - sudo fallocate -l 1G /swap(sudo dd if=/dev/zero of=/swap bs=1MiB count=1000) - sudo chmod 600 /swap - sudo mkswap /swap - sudo swapon /swap - sudo nano /etc/fstab > /swap none swap defaults 0 0
 # swapon --show
-# free- h
+# free -h
 #-------------------------------------------------------------------------------------#
 # ----------------install Apachecd /var/www--------------------
 sudo yum update
@@ -180,10 +180,11 @@ chmod -R 755 /var/lib/php/session
 # -----------------FTP НАСТРОЙКА----------------------------
 yum install pure-ftpd-selinux
 systemctl start pure-ftpd
+sudo systemctl enable pure-ftpd
 # PassivePortRange 40000 50000
 # iptables --append INPUT -m state --state NEW -m tcp -p tcp --dport 48000:50000 -j ACCEPT
 #
-sudo syatemctl enable pure-ftpd
+
 cd /etc/pure-ftpd
 sudo nano /etc/pure-ftpd/pure-ftpd.conf > PassivePortRange 45000 50000 > PureDB /etc/pure-ftpd/pureftpd.pdb
 ftp -p -d 10.112.2.136
